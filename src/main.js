@@ -7,6 +7,7 @@ import generateSchemaPlugin from '~/plugins/generate-schema'
 import timeToReadPlugin from '~/plugins/timeToRead'
 
 import font from './font'
+// import 'katex/dist/katex.min.css'
 import 'prism-themes/themes/prism-vsc-dark-plus.css'
 import './main.css'
 

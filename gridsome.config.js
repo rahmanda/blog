@@ -82,7 +82,8 @@ module.exports = {
   transformers: {
     remark: {
       plugins: [
-        ['@gridsome/remark-prismjs', { transformInlineCode: false }]
+        ['@gridsome/remark-prismjs', { transformInlineCode: false }],
+        'gridsome-remark-katex',
       ],
       slug: false
     }
