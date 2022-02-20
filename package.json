@@ -17,6 +17,7 @@
     "gridsome": "^0.7.0",
     "gridsome-plugin-robots": "^0.2.1",
     "gridsome-plugin-tailwindcss": "^2.2.43",
+    "gridsome-remark-katex": "^0.1.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "prism-themes": "^1.4.0",
