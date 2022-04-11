@@ -12,7 +12,7 @@ export function generateMeta(title, description, siteUrl, url) {
       key: 'description', name: 'description', content: description
     },
     {
-      name: 'twitter:card', content: 'summary'
+      name: 'twitter:card', content: 'summary_large_image'
     },
     {
       name: 'twitter:title', content: title
