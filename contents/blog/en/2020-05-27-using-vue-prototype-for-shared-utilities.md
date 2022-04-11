@@ -5,6 +5,7 @@ slug: using-vue-prototype-for-shared-utilities
 published_date: 2020-05-27
 language: en
 type: blog
+category: vue
 translations:
   id: /blog/id/menggunakan-vue-prototype-untuk-shared-utilities
 ---

@@ -5,6 +5,7 @@ summary: Pendapat kurang populer terhadap hoisting dan penggunaannya
 published_date: 2019-06-21
 language: id
 type: blog
+category: javascript
 translations:
   en: /blog/en/improving-code-readability-with-hoisting/
 ---

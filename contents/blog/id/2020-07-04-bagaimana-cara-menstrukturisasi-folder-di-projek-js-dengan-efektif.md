@@ -5,6 +5,7 @@ slug: bagaimana-cara-mengelola-struktur-folder-di-projek-js-dengan-efektif
 published_date: 2020-07-04
 language: id
 type: blog
+category: javascript
 translations:
   en: /blog/en/how-to-manage-your-folder-structure-in-js-project-effectively
 ---

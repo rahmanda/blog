@@ -3,6 +3,7 @@ title: Ensiklopedia Projek Kuliah Ilkomerz
 slug: ensiklopedia-projek-kuliah-ilkomerz
 published_date: 2015-02-15
 language: id
+category: misc
 type: blog
 ---
 

@@ -6,6 +6,7 @@ slug: memodifikasi-style-dengan-setAttribute-itu-buruk
 published_date: 2020-06-16
 language: id
 type: blog
+category: javascript
 translations:
   en: /blog/en/modifying-styles-with-setAttribute-is-bad/
 ---

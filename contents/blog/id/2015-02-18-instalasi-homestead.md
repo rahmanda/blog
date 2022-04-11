@@ -3,6 +3,7 @@ title: Instalasi Homestead Laravel
 slug: instalasi-homestead-laravel
 published_date: 2015-02-18
 language: id
+category: laravel
 type: blog
 ---
 

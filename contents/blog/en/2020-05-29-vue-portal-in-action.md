@@ -5,6 +5,7 @@ slug: vue-portal-in-action
 published_date: 2020-05-29
 language: en
 type: blog
+category: vue
 translations:
   id: /blog/id/studi-kasus-penggunaan-vue-portal/
 ---

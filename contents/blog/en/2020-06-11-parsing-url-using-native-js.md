@@ -5,6 +5,7 @@ slug: parsing-url-using-native-js
 published_date: 2020-06-12
 language: en
 type: blog
+category: javascript
 translations:
   id: /blog/id/parsing-url-menggunakan-native-js/
 ---

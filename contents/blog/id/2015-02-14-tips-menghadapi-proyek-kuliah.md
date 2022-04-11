@@ -3,6 +3,7 @@ title: Tips Menghadapi Projek Kuliah - Ekslusif untuk Ilkom
 slug: tips-menghadapi-proyek-kuliah
 published_date: 2015-02-14
 language: id
+category: misc
 type: blog
 ---
 

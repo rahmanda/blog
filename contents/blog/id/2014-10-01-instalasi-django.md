@@ -3,6 +3,7 @@ title: Instalasi Django, Framework Web Python
 slug: instalasi-django-framework-web-python
 published_date: 2014-10-01
 language: id
+category: python
 type: blog
 ---
 

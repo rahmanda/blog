@@ -5,6 +5,7 @@ slug: memahami-closure-di-javascript
 published_date: 2016-12-31
 language: id
 type: blog
+category: javascript
 translations:
   en: /blog/en/understanding-closure-in-javascript/
 ---

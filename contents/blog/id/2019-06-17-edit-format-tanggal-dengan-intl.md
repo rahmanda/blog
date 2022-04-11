@@ -5,6 +5,7 @@ summary: Intl.DateTimeFormat adalah cara mudah untuk mengedit format tanggal dan
 published_date: 2019-06-17
 language: id
 type: blog
+category: javascript
 translations:
   en: /blog/en/formatting-date-and-time-with-datetimeformat/
 ---
