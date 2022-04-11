@@ -51,6 +51,13 @@ const wrapText = function(ctx, text, x, y, maxWidth, lineHeight) {
 // articleCategory: the category which that article sits in - or the subtext of the article
 // emoji: the emoji you want to appear in the image.
 const generateMainImage = async function(canonicalName, gradientColors, articleName, articleCategory, locale, logo) {
+    const canvasWidth = 800
+    const canvasHeight = 418
+    const logoSize = 75
+    const padding = 50
+    const fontSize = 50
+    const lineHeight = fontSize + 3
+
     if(fs.existsSync(`../static/thumbnails/${canonicalName}.png`)) {
         return `Image ${canonicalName} Exist! We did not create any.`
     }
@@ -61,28 +68,28 @@ const generateMainImage = async function(canonicalName, gradientColors, articleN
         gradientColors = [ "#8005fc", "#073bae"];
     }
 
-    const canvas = createCanvas(1342, 853);
+    const canvas = createCanvas(canvasWidth, canvasHeight);
     const ctx = canvas.getContext('2d')
 
-    let grd = ctx.createLinearGradient(0, 853, 1352, 0);
+    let grd = ctx.createLinearGradient(0, canvasHeight, canvasWidth, 0);
     grd.addColorStop(0, gradientColors[0]);
     grd.addColorStop(1, gradientColors[1]);
     ctx.fillStyle = grd;
-    ctx.fillRect(0, 0, 1342, 853);
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-    ctx.drawImage(logo, 1342 - 150 - 75, 75, 150, 150);
+    ctx.drawImage(logo, canvasWidth - padding - (logoSize - 5), padding - 5, logoSize, logoSize);
 
-    ctx.font = '95px Inter-ExtraBold';
+    ctx.font = `${fontSize}px Inter-ExtraBold`;
     ctx.fillStyle = 'white';
-    let wrappedText = wrapText(ctx, articleName, 85, 753, 1200, 100);
+    let wrappedText = wrapText(ctx, articleName, padding, canvasHeight - padding, canvasWidth - padding, lineHeight);
     wrappedText[0].forEach(function(item) {
         ctx.fillText(item[0], item[1], item[2] - wrappedText[1]);
     })
 
     // Add our category text to the canvas
-    ctx.font = '50px Inter-Medium';
+    ctx.font = `${fontSize / 2}px Inter-Medium`;
     ctx.fillStyle = 'rgba(255,255,255,0.8)';
-    ctx.fillText(articleCategory, 85, 753 - wrappedText[1] - 100);
+    ctx.fillText(articleCategory, padding, canvasHeight - padding - wrappedText[1] - lineHeight);
 
     // Set canvas as to png
     try {
