@@ -3,6 +3,7 @@ title: Membangun Fitur Pencarian dengan Laravel Scout
 slug: membangun-fitur-pencarian-dengan-laravel-scout
 published_date: 2016-09-11
 language: id
+category: laravel
 type: blog
 ---
 

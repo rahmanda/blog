@@ -3,6 +3,7 @@ title: Membuat Tweepy dengan Flask - Episode 3
 slug: membuat-tweepy-dengan-flask-ep-3
 published_date: 2016-09-10
 language: id
+category: python
 type: blog
 ---
 

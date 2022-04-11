@@ -3,6 +3,7 @@ title: Berkenalan dengan Python
 slug: berkenalan-dengan-python
 published_date: 2015-02-21
 language: id
+category: python
 type: blog
 ---
 

@@ -5,6 +5,7 @@ summary: I explain how to implement viewport checking as a component to gain the
 published_date: 2020-06-22
 language: en
 type: blog
+category: vue
 translations:
   id: /blog/id/membuat-komponen-untuk-mengecek-viewport-di-vue
 ---

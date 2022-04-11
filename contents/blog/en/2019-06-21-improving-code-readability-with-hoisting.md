@@ -5,6 +5,7 @@ summary: Unpopular opinion towards javascript hoisting and its usability
 published_date: 2019-06-21
 language: en
 type: blog
+category: javascript
 translations:
   id: /blog/id/peran-hoisting-dalam-meningkatkan-keterbacaan-kode/
 ---

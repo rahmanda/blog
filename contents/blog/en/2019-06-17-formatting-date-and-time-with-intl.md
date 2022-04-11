@@ -5,6 +5,7 @@ summary: Intl.DateTimeFormat is an easy tool to formatting date and time without
 published_date: 2019-06-17
 language: en
 type: blog
+category: javascript
 translations:
   id: /blog/id/edit-format-tanggal-dan-waktu-dengan-datetimeformat/
 ---

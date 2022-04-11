@@ -5,6 +5,7 @@ slug: kok-kamu-pakai-emacs-sih
 published_date: 2016-09-11
 language: id
 type: blog
+category: tools
 translations:
   en: /blog/en/why-i-use-emacs/
 ---

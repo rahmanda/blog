@@ -5,6 +5,7 @@ slug: understanding-closure-in-javascript
 published_date: 2016-12-31
 language: en
 type: blog
+category: javascript
 translations:
   id: /blog/id/memahami-closure-di-javascript/
 ---

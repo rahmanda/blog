@@ -3,6 +3,7 @@ title: Blade - Mengenal Template Engine Laravel 4
 slug: blade-mengenal-template-engine-laravel-4
 published_date: 2015-05-19
 language: id
+category: laravel
 type: blog
 ---
 

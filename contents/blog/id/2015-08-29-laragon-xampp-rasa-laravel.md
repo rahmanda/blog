@@ -3,6 +3,7 @@ title: Laragon - XAMPP Rasa Laravel
 slug: laragon-xampp-rasa-laravel
 published_date: 2015-08-29
 language: id
+category: laravel
 type: blog
 ---
 

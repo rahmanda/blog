@@ -3,6 +3,7 @@ title: Instalasi Laravel Valet di Ubuntu
 slug: instalasi-laravel-valet-di-ubuntu
 published_date: 2017-02-06
 language: id
+category: laravel
 type: blog
 ---
 

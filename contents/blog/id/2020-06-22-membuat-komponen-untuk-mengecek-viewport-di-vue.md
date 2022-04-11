@@ -5,6 +5,7 @@ summary: Saya menjelaskan bagaimana cara mengecek viewport dengan komponen untuk
 published_date: 2020-06-22
 language: id
 type: blog
+category: vue
 translations:
   en: /blog/en/building-component-to-check-viewport-in-vue
 ---

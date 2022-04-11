@@ -3,6 +3,7 @@ title: Homestead - Lingkungan Pengembangan Laravel
 slug: homestead-lingkungan-pengembangan-laravel
 published_date: 2015-02-16
 language: id
+category: laravel
 type: blog
 ---
 

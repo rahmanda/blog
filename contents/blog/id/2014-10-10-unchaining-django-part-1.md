@@ -3,6 +3,7 @@ title: Unchaining Django - Part 1
 slug: unchaining-django-part-1
 published_date: 2014-10-10
 language: id
+category: python
 type: blog
 ---
 

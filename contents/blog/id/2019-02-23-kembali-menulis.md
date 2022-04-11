@@ -4,6 +4,7 @@ slug: kembali-menulis
 summary: Tulisan-tulisan saya yang saya pikir tidak penting ternyata ada yang membaca dan mengapresiasi
 published_date: 2019-02-23
 language: id
+category: misc
 type: blog
 ---
 

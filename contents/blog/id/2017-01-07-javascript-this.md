@@ -5,6 +5,7 @@ slug: javascript-this
 published_date: 2017-01-07
 language: id
 type: blog
+category: javascript
 translations:
   en: /en/javascript-this/
 ---

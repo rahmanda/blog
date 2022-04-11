@@ -5,7 +5,7 @@ export default {
 }
 
 export function generateMeta(title, description, siteUrl, url) {
-  const image = `${siteUrl}/og-image.jpg`
+  const image = url.replace('/blog', '/thumbnails/blog').slice(0, -1) + '.png'
 
   return [
     {

@@ -3,6 +3,7 @@ title: Berkenalan dengan Sass + Gulp
 slug: berkenalan-dengan-sass-gulp
 published_date: 2015-05-05
 language: id
+category: css
 type: blog
 ---
 
