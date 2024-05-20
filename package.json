@@ -2,37 +2,33 @@
   "name": "@rahmanda/blog",
   "private": true,
   "scripts": {
-    "build": "gridsome build",
-    "develop": "gridsome develop",
-    "explore": "gridsome explore",
-    "generate-thumbnails": "node scripts/generate-thumbnails.js"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "format": "prettier . --write",
+    "astro": "astro",
+    "postinstall": "patch-package"
   },
   "dependencies": {
-    "@gridsome/plugin-sitemap": "^0.2.3",
-    "@gridsome/remark-prismjs": "^0.3.0",
-    "@gridsome/source-filesystem": "^0.6.2",
-    "@gridsome/transformer-remark": "^0.6.0",
-    "@microflash/gridsome-plugin-feed": "^1.0.7",
-    "anchor-js": "^4.2.2",
-    "canvas": "^2.9.1",
-    "glob": "^7.2.0",
-    "gray-matter": "^4.0.3",
-    "gridsome": "^0.7.0",
-    "gridsome-plugin-gtag": "^0.1.10",
-    "gridsome-plugin-robots": "^0.2.1",
-    "gridsome-plugin-tailwindcss": "^2.2.43",
-    "gridsome-remark-katex": "^0.1.1",
-    "lodash": "^4.17.15",
-    "moment": "^2.24.0",
-    "postcss": "^8.4.38",
-    "postcss-loader": "^8.1.1",
-    "prism-themes": "^1.4.0",
-    "vue-i18n": "^8.17.0"
-  },
-  "engines": {
-    "node": ">=14.21.3 <15.0.0"
+    "@astrojs/check": "^0.5.6",
+    "@astrojs/mdx": "^2.1.1",
+    "@astrojs/tailwind": "^5.1.0",
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/codemirror": "^5.60.15",
+    "@types/node": "^20.12.7",
+    "astro": "^4.4.5",
+    "goodshare.js": "^6.3.0",
+    "patch-package": "^8.0.0",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "unist-util-visit": "^5.0.0"
   },
   "volta": {
-    "node": "14.21.3"
+    "node": "18.16.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0"
   }
 }
