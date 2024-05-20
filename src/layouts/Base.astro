@@ -1,0 +1,25 @@
+---
+import Meta from "../components/Meta.astro";
+import { SITE_TITLE } from "../config";
+
+const { frontmatter } = Astro.props;
+
+function getTitle(title: string) {
+  if (title) {
+    return `${title} | ${SITE_TITLE}`;
+  }
+  return SITE_TITLE;
+}
+
+const title = getTitle(frontmatter?.title);
+---
+
+<html lang="id">
+  <head>
+    <Meta title={title} description={frontmatter?.summary} />
+    <slot name="head" />
+  </head>
+  <body class="bg-gray-100 relative font-sans text-gray-900">
+    <slot />
+  </body>
+</html>
