@@ -1,0 +1,196 @@
+---
+import { getCollection } from "astro:content";
+import { formatDate } from "../utils/date";
+import BaseLayout from "../layouts/Base.astro";
+import Navbar from "./Navbar.astro";
+import Footer from "./Footer.astro";
+
+interface Props {
+  locale: "en" | "id";
+  summary: string;
+}
+
+const { locale, summary } = Astro.props;
+
+const title = "Blog";
+
+const blogEntries = (await getCollection("blog")).filter(
+  (entry) => entry.data.language === locale,
+);
+
+const noteEntries = (await getCollection("notes")).filter(
+  (entry) => entry.data.language === locale,
+);
+
+const featuredEntry = blogEntries.pop();
+
+const t = {
+  en: {
+    featured: "Featured",
+    read_article: "Read article",
+    notes_description:
+      "Collection of my tiny gists. They contain some weird stuffs or cool tricks I found during work.",
+    view_all_posts: "View all posts",
+    view_all_notes: "View all notes",
+  },
+  id: {
+    featured: "Featured",
+    read_article: "Baca artikel",
+    notes_description:
+      "Koleksi catatan-catatan kecil saya. Isinya berupa hal-hal aneh atau trik keren yang saya temukan saat bekerja.",
+    view_all_posts: "Lihat semua postingan",
+    view_all_notes: "Lihat semua notes",
+  },
+};
+
+const featuredEntryLink = `/${locale}/blog/${featuredEntry?.slug}`;
+const viewAllPostsLink = `/${locale}/blog/archives`;
+const viewAllNotesLink = `/${locale}/notes`;
+---
+
+<BaseLayout frontmatter={{ title, summary }}>
+  <Navbar locale={locale} />
+
+  <main class="px-4 max-w-screen-lg mx-auto">
+    <article class="mt-16 sm:mt-24 mb-12 sm:mb-16">
+      <aside class="flex items-center gap-2 mb-4">
+        <span class="bg-gray-200 font-sans-title text-sm py-1 px-2 rounded"
+          >{t[locale].featured}</span
+        >
+        <p class="text-sm">
+          {featuredEntry && formatDate(featuredEntry.data.published_date)}
+        </p>
+      </aside>
+      <h2 class="font-sans-title text-3xl sm:text-5xl mb-4 sm:mb-6">
+        {featuredEntry?.data.title}
+      </h2>
+      <p class="sm:text-lg mb-5 sm:mb-6">{featuredEntry?.data.summary}</p>
+      <div>
+        <a
+          href={featuredEntryLink}
+          class="inline-flex items-center gap-1 font-sans-title border-2 border-gray-900 sm:text-lg py-2 px-3 rounded"
+          >{t[locale].read_article}
+          <svg
+            class="w-4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-arrow-right"
+            ><line x1="5" y1="12" x2="19" y2="12"></line><polyline
+              points="12 5 19 12 12 19"></polyline></svg
+          ></a
+        >
+      </div>
+    </article>
+
+    <section class="mb-12 sm:mb-16">
+      <ul class="grid grid-cols-1 sm:grid-cols-2 auto-rows-fr gap-8 mb-8">
+        {
+          blogEntries &&
+            blogEntries
+              .sort(
+                (a, b) =>
+                  b.data.published_date.getTime() -
+                  a.data.published_date.getTime(),
+              )
+              .slice(0, 6)
+              .map((entry) => (
+                <li>
+                  <article class="border-2 border-gray-300 rounded-lg p-6 h-full">
+                    <a href={`/en/blog/${entry.slug}/`} class="group">
+                      <aside class="mb-2">
+                        <span class="text-sm">
+                          {formatDate(entry.data.published_date)}
+                        </span>
+                      </aside>
+                      <h2 class="font-sans-title text-xl sm:text-2xl mb-2 sm:mb-4 group-hover:underline">
+                        {entry.data.title}
+                      </h2>
+                      <p>{entry.data.summary}</p>
+                    </a>
+                  </article>
+                </li>
+              ))
+        }
+      </ul>
+      <div>
+        <a
+          href={viewAllPostsLink}
+          class="inline-flex items-center gap-1 font-sans-title border-2 border-gray-900 sm:text-lg py-2 px-3 rounded"
+          >{t[locale].view_all_posts}<svg
+            class="w-4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-arrow-right"
+            ><line x1="5" y1="12" x2="19" y2="12"></line><polyline
+              points="12 5 19 12 12 19"></polyline></svg
+          ></a
+        >
+      </div>
+    </section>
+
+    <section class="mb-12 sm:mb-16">
+      <h2 class="font-sans-title text-2xl sm:text-4xl my-4 sm:my-6">Notes.</h2>
+      <p class="sm:text-lg mb-6">
+        {t[locale].notes_description}
+      </p>
+      <ul class="grid grid-cols-1 sm:grid-cols-3 auto-rows-fr gap-8 mb-8">
+        {
+          noteEntries &&
+            noteEntries
+              .sort(
+                (a, b) =>
+                  b.data.published_date.getTime() -
+                  a.data.published_date.getTime(),
+              )
+              .slice(0, 6)
+              .map((entry) => (
+                <li>
+                  <article class="bg-gray-200 rounded-lg p-6 h-full">
+                    <a href={`/en/blog/${entry.slug}/`} class="group">
+                      <aside class="mb-2">
+                        <span class="text-sm">
+                          {formatDate(entry.data.published_date)}
+                        </span>
+                      </aside>
+                      <h2 class="font-sans-title text-lg sm:text-xl group-hover:underline">
+                        {entry.data.title}
+                      </h2>
+                    </a>
+                  </article>
+                </li>
+              ))
+        }
+      </ul>
+      <div>
+        <a
+          href={viewAllNotesLink}
+          class="inline-flex items-center gap-1 font-sans-title border-2 border-gray-900 sm:text-lg py-2 px-3 rounded"
+          >{t[locale].view_all_notes}<svg
+            class="w-4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-arrow-right"
+            ><line x1="5" y1="12" x2="19" y2="12"></line><polyline
+              points="12 5 19 12 12 19"></polyline></svg
+          ></a
+        >
+      </div>
+    </section>
+  </main>
+  <Footer locale={locale} />
+</BaseLayout>

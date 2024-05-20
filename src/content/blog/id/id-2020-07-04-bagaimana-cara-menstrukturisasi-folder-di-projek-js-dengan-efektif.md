@@ -1,6 +1,6 @@
 ---
 title: Bagaimana Cara Mengelola Struktur Folder di Projek JS dengan Efektif
-summary: Struktur folder mungkin terlihat sepele. Tetapi kalau dilakukan dengan benar, kamu bisa mendapatkan banyak manfaat. Pada artikel ini, saya akan menjelaskan pentingnya mempunyai struktur yang baik dan bagaimana cara mencapainya.
+summary: Struktur folder mungkin terlihat sepele. Tetapi kalau dilakukan dengan benar, kamu bisa mendapatkan banyak manfaat. Pada artikel ini, saya akan menjelaskan pentingnya mempunyai struktur folder yang baik dan bagaimana cara mencapainya.
 slug: bagaimana-cara-mengelola-struktur-folder-di-projek-js-dengan-efektif
 published_date: 2020-07-04
 language: id
@@ -89,9 +89,9 @@ Karena helper `time` dianggap besar, kita bisa memecahnya ke dalam dua file dan 
 
 Saya sering menemukan beberapa kasus dimana orang membuat folder dengan hanya satu file atau bahkan tidak ada file sama sekali. Hal ini terjadi karena satu dari tiga alasan berikut ini.
 
- 1. Ikut-ikutan struktur projek orang lain
- 2. Hasil dari menggunakan bootstrapper
- 3. Menyisakan tempat untuk keperluan nanti
+1.  Ikut-ikutan struktur projek orang lain
+2.  Hasil dari menggunakan bootstrapper
+3.  Menyisakan tempat untuk keperluan nanti
 
 Jangan salah, kamu boleh kok meng-copas struktur orang lain atau menggunakan bootstrapper apapun yang kamu suka. Hanya saja, kamu perlu tahu kalau sebenarnya kamu mempunyai kontrol penuh terhadap struktur folder yang kamu punya. Jadi, kalau kamu menemukan folder yang kosong atau hanya terdiri dari satu file untuk sekian lama, sebaiknya dihapus saja. Kamu bisa menambahkannya lagi nanti saat kamu sudah memerlukannya.
 

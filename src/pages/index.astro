@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/Base.astro";
-import { COMMUNICATION_CHANNELS } from "../config";
+import Footer from "../components/Footer.astro";
 
 const headline = "Making positive impacts through software and data analysis.";
 const summary =
@@ -51,12 +51,6 @@ const navs = [
   {
     name: "Blog",
     link: "/en/blog/",
-    primary: false,
-    external: false,
-  },
-  {
-    name: "Notes",
-    link: "/en/notes",
     primary: false,
     external: false,
   },
@@ -135,7 +129,7 @@ const navs = [
       </p>
     </section>
 
-    <section class="mb-12">
+    <section class="mb-14">
       <h2 class="font-sans-title text-2xl sm:text-4xl my-4 sm:my-6">
         Projects.
       </h2>
@@ -152,9 +146,11 @@ const navs = [
                 <a
                   href={project.link}
                   target="_blank"
-                  class="flex gap-1 mb-3 hover:underline"
+                  class="flex gap-1 mb-2 sm:mb-3 hover:underline"
                 >
-                  <h3 class="text-lg font-sans-title">{project.title}</h3>
+                  <h3 class="text-lg sm:text-xl font-sans-title">
+                    {project.title}
+                  </h3>
                   <svg
                     class="w-4"
                     xmlns="http://www.w3.org/2000/svg"
@@ -178,7 +174,7 @@ const navs = [
       </ul>
     </section>
 
-    <section class="mb-12">
+    <section class="mb-14">
       <h2 class="font-sans-title text-2xl md:text-4xl my-6">
         Featured articles.
       </h2>
@@ -192,7 +188,9 @@ const navs = [
             <li>
               <article class="border-2 border-gray-300 p-4 sm:p-6 rounded-lg h-full">
                 <a class="hover:underline" href={article.link}>
-                  <h3 class="text-lg font-sans-title mb-3">{article.title}</h3>
+                  <h3 class="text-lg sm:text-xl font-sans-title mb-2 sm:mb-3">
+                    {article.title}
+                  </h3>
                 </a>
                 <p>{article.summary}</p>
               </article>
@@ -208,7 +206,7 @@ const navs = [
       </div>
     </section>
 
-    <section class="mb-12">
+    <section class="mb-14">
       <h2 class="font-sans-title text-2xl sm:text-4xl my-6">Let's connect!</h2>
       <p class="sm:text-lg mb-6">
         You're always welcome to contact me via <a
@@ -224,15 +222,5 @@ const navs = [
     </section>
   </main>
 
-  <footer class="bg-gray-200">
-    <div class="max-w-screen-lg mx-auto py-8 px-4 text-sm">
-      <p class="mb-2">© 2015-present Rahmanda Wibowo. All rights reserved.</p>
-      <p>
-        You can find me on <a class="underline inline-flex items-center"
-          >X (Twitter)</a
-        >, <a class="underline inline-flex items-center">Linkedin</a>, or
-        <a class="underline inline-flex items-center">Github</a>.
-      </p>
-    </div>
-  </footer>
+  <Footer locale="en" />
 </BaseLayout>

@@ -1,5 +1,5 @@
 ---
-title: How to Manage Your Folder Structure in JS Project Effectively
+title: How to Manage Your Folder Structure in JS Project Effectively.
 summary: Folder structure may seem trivial. But if it done correctly, you can gain a lot of benefit from it. In this article, I will explain the importance of having a great folder structure and how to achieve it.
 slug: how-to-manage-your-folder-structure-in-js-project-effectively
 published_date: 2020-07-04
@@ -89,9 +89,9 @@ Because the `time` helpers are supposedly large, we can split it into two files 
 
 I often find several cases where people put a folder with only one file or even no file at all. This happens most likely because one of three reasons below:
 
- 1. Follow other project structure
- 2. Result of using project bootstrapper
- 3. Need to reserve some spaces for future use
+1.  Follow other project structure
+2.  Result of using project bootstrapper
+3.  Need to reserve some spaces for future use
 
 Don't get me wrong, you can copy other people structure or use whatever bootstrapper you like. However, you need to know that you take full controls over your own folder structure. So, if you find some folders that stay empty or just contain one file for quite a long time, you should just remove them. You can add it later when you think you need that folder.
 
