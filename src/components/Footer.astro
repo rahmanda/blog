@@ -1,0 +1,30 @@
+---
+interface Props {
+  locale: "en" | "id";
+}
+
+const { locale } = Astro.props;
+---
+
+<footer class="bg-gray-200">
+  <div class="max-w-screen-lg mx-auto py-8 px-4 text-sm">
+    <p class="mb-2">© 2015-present Rahmanda Wibowo. All rights reserved.</p>
+    {
+      locale === "en" ? (
+        <p>
+          You can find me on{" "}
+          <a class="underline inline-flex items-center">X (Twitter)</a>,{" "}
+          <a class="underline inline-flex items-center">Linkedin</a>, or
+          <a class="underline inline-flex items-center">Github</a>.
+        </p>
+      ) : (
+        <p>
+          Temukan saya di{" "}
+          <a class="underline inline-flex items-center">X (Twitter)</a>,{" "}
+          <a class="underline inline-flex items-center">Linkedin</a>, atau
+          <a class="underline inline-flex items-center">Github</a>.
+        </p>
+      )
+    }
+  </div>
+</footer>
