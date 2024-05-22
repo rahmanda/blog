@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import BlogArticle from "src/components/BlogArticle.astro";
 
 import type { CollectionEntry } from "astro:content";
 
@@ -21,8 +22,6 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-
-const { Content } = await entry.render();
 ---
 
-<Content />
+<BlogArticle entry={entry} locale="en" />

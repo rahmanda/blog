@@ -1,4 +1,5 @@
 ---
+import { SOCIAL_MEDIA } from "../config";
 interface Props {
   locale: "en" | "id";
 }
@@ -13,16 +14,58 @@ const { locale } = Astro.props;
       locale === "en" ? (
         <p>
           You can find me on{" "}
-          <a class="underline inline-flex items-center">X (Twitter)</a>,{" "}
-          <a class="underline inline-flex items-center">Linkedin</a>, or
-          <a class="underline inline-flex items-center">Github</a>.
+          <a
+            href={SOCIAL_MEDIA.x}
+            class="underline inline-flex items-center"
+            target="_blank"
+          >
+            X (Twitter)
+          </a>
+          ,{" "}
+          <a
+            href={SOCIAL_MEDIA.linkedin}
+            class="underline inline-flex items-center"
+            target="_blank"
+          >
+            Linkedin
+          </a>
+          , or
+          <a
+            href={SOCIAL_MEDIA.github}
+            class="underline inline-flex items-center"
+            target="_blank"
+          >
+            Github
+          </a>
+          .
         </p>
       ) : (
         <p>
           Temukan saya di{" "}
-          <a class="underline inline-flex items-center">X (Twitter)</a>,{" "}
-          <a class="underline inline-flex items-center">Linkedin</a>, atau
-          <a class="underline inline-flex items-center">Github</a>.
+          <a
+            href={SOCIAL_MEDIA.x}
+            class="underline inline-flex items-center"
+            target="_blank"
+          >
+            X (Twitter)
+          </a>
+          ,{" "}
+          <a
+            href={SOCIAL_MEDIA.linkedin}
+            class="underline inline-flex items-center"
+            target="_blank"
+          >
+            Linkedin
+          </a>
+          , atau
+          <a
+            href={SOCIAL_MEDIA.github}
+            class="underline inline-flex items-center"
+            target="_blank"
+          >
+            Github
+          </a>
+          .
         </p>
       )
     }

@@ -37,7 +37,7 @@ const t = {
     featured: "Featured",
     read_article: "Baca artikel",
     notes_description:
-      "Koleksi catatan-catatan kecil saya. Isinya berupa hal-hal aneh atau trik keren yang saya temukan saat bekerja.",
+      "Koleksi catatan-catatan kecil saya. Isinya bisa berupa hal-hal aneh atau trik keren yang saya temukan saat bekerja.",
     view_all_posts: "Lihat semua postingan",
     view_all_notes: "Lihat semua notes",
   },
@@ -52,7 +52,7 @@ const viewAllNotesLink = `/${locale}/notes`;
   <Navbar locale={locale} />
 
   <main class="px-4 max-w-screen-lg mx-auto">
-    <article class="mt-16 sm:mt-24 mb-12 sm:mb-16">
+    <article class="mt-14 sm:mt-20 mb-12 sm:mb-16">
       <aside class="flex items-center gap-2 mb-4">
         <span class="bg-gray-200 font-sans-title text-sm py-1 px-2 rounded"
           >{t[locale].featured}</span
@@ -101,7 +101,7 @@ const viewAllNotesLink = `/${locale}/notes`;
               .map((entry) => (
                 <li>
                   <article class="border-2 border-gray-300 rounded-lg p-6 h-full">
-                    <a href={`/en/blog/${entry.slug}/`} class="group">
+                    <a href={`/${locale}/blog/${entry.slug}/`} class="group">
                       <aside class="mb-2">
                         <span class="text-sm">
                           {formatDate(entry.data.published_date)}
@@ -138,7 +138,7 @@ const viewAllNotesLink = `/${locale}/notes`;
       </div>
     </section>
 
-    <section class="mb-12 sm:mb-16">
+    <section class="mb-16 sm:mb-24">
       <h2 class="font-sans-title text-2xl sm:text-4xl my-4 sm:my-6">Notes.</h2>
       <p class="sm:text-lg mb-6">
         {t[locale].notes_description}
@@ -156,7 +156,7 @@ const viewAllNotesLink = `/${locale}/notes`;
               .map((entry) => (
                 <li>
                   <article class="bg-gray-200 rounded-lg p-6 h-full">
-                    <a href={`/en/blog/${entry.slug}/`} class="group">
+                    <a href={`/${locale}/notes/${entry.slug}/`} class="group">
                       <aside class="mb-2">
                         <span class="text-sm">
                           {formatDate(entry.data.published_date)}
