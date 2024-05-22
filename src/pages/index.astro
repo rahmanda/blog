@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/Base.astro";
 import Footer from "../components/Footer.astro";
+import { SOCIAL_MEDIA } from "../config";
 
 const headline = "Making positive impacts through software and data analysis.";
 const summary =
@@ -122,8 +123,8 @@ const navs = [
       </header>
 
       <p class="text-lg sm:text-xl">
-        My name is Rahmanda. I'm a software engineer specializing in web
-        development and productivity tools based in Indonesia. I provide
+        My name is Rahmanda. I'm a software engineer based in Indonesia,
+        specializing in web development and productivity tools. I provide
         services to improve the effectiveness and efficiency of the tech
         implementation within companies and institutions.
       </p>
@@ -211,12 +212,10 @@ const navs = [
       <p class="sm:text-lg mb-6">
         You're always welcome to contact me via <a
           class="underline"
-          href="https://linkedin.com/in/rahmandawibowo"
+          href={SOCIAL_MEDIA.linkedin}
           target="_blank">Linkedin</a
-        >, and <a
-          class="underline"
-          href="mailto://rahmandawibowo@gmail.com"
-          target="_blank">Email</a
+        >, and <a class="underline" href={SOCIAL_MEDIA.email} target="_blank"
+          >Email</a
         >.
       </p>
     </section>

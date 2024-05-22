@@ -5,13 +5,9 @@ export const BASE_PATH =
   import.meta.env.BASE_URL === "/" ? "" : import.meta.env.BASE_URL;
 export const SITE_TITLE = "Rahmanda Wibowo";
 
-export const COMMUNICATION_CHANNELS = [
-  {
-    name: "Linkedin",
-    link: "https://linkedin.com/in/rahmandawibowo",
-  },
-  {
-    name: "Email",
-    link: "mailto://rahmandawibowo@gmail.com",
-  },
-];
+export const SOCIAL_MEDIA = {
+  linkedin: "https://linkedin.com/in/rahmandawibowo",
+  email: "mailto://rahmandawibowo@gmail.com",
+  x: "https://x.com/rahmandawibowo",
+  github: "https://github.com/rahmanda",
+};

@@ -1,0 +1,54 @@
+---
+import BaseLayout from "src/layouts/Base.astro";
+import Navbar from "src/components/Navbar.astro";
+import Footer from "src/components/Footer.astro";
+import { formatDate } from "src/utils/date";
+
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"blog">;
+  locale: "en" | "id";
+}
+
+const { entry, locale } = Astro.props;
+
+const { Content } = await entry.render();
+---
+
+<BaseLayout
+  frontmatter={{ title: entry.data.title, summary: entry.data.summary }}
+>
+  <Navbar locale={locale} />
+
+  <main class="mt-12 sm:mt-20 max-w-screen-lg mx-auto px-4 mb-20 sm:mb-24">
+    <article>
+      <header class="pb-3 sm:pb-4 border-b-2 border-gray-300">
+        <h1
+          class="font-sans-title text-4xl sm:text-6xl mb-5 sm:mb-8 text-balance"
+        >
+          {entry.data.title}
+        </h1>
+        <p
+          class="text-lg sm:text-2xl leading-7 sm:leading-9 sm:text-balance mb-5 sm:mb-6"
+        >
+          {entry.data.summary}
+        </p>
+        <aside class="text-sm sm:text-lg text-gray-500 flex items-center gap-2">
+          <time datetime={formatDate(entry.data.published_date)}
+            >{formatDate(entry.data.published_date)}</time
+          >
+          <span class="text-xs sm:text-sm">•</span>
+          <span>2 minutes read</span>
+        </aside>
+      </header>
+
+      <div
+        class="pt-4 sm:pt-6 prose sm:prose-lg prose-pre:border-2 prose-pre:rounded-lg prose-pre:p-2 prose-pre:!bg-gray-50 prose-h1:font-semibold prose-h1:text-3xl md:prose-h1:text-4xl prose-h2:font-semibold prose-h2:text-xl md:prose-h2:text-2xl prose-h3:text-lg md:prose-h3:text-xl prose-h1:font-sans-title prose-h2:font-sans-title prose-h3:font-sans-title prose-h4:font-sans-title prose-h1:text-pretty prose-h2:text-pretty prose-h3:text-pretty prose-h4:text-pretty prose-hr:border-t-2 prose-hr:border-gray-300"
+      >
+        <Content />
+      </div>
+    </article>
+  </main>
+  <Footer locale={locale} />
+</BaseLayout>
