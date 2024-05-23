@@ -32,7 +32,7 @@ const t = {
 <BaseLayout
   frontmatter={{ title: entry.data.title, summary: entry.data.summary, locale }}
 >
-  <Navbar locale={locale} />
+  <Navbar locale={locale} slug={`/${locale}/blog/${entry.slug}`} />
 
   <main class="mt-12 sm:mt-20 max-w-screen-lg mx-auto px-4 mb-20 sm:mb-24">
     <article>
