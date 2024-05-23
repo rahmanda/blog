@@ -1,12 +1,13 @@
 ---
-import BaseLayout from "../layouts/Base.astro";
-import Footer from "../components/Footer.astro";
-import { SOCIAL_MEDIA } from "../config";
+import Homepage from "src/components/Homepage.astro";
+
+const locale = "en";
 
 const headline = "Making positive impacts through software and data analysis.";
 const summary =
   "Rahmanda Wibowo is a software engineer specializing in web development. He provides services to improve software development process within companies and institutions.";
-
+const subheadline =
+  "My name is Rahmanda. I'm a software engineer based in Indonesia, specializing in web development and productivity tools. I provide services to improve the effectiveness and efficiency of the tech implementation within companies and institutions.";
 const projects = [
   {
     title: "Ayo Ngulik!",
@@ -47,182 +48,13 @@ const articles = [
     link: "/en/blog/understanding-closure-in-javascript/",
   },
 ];
-
-const navs = [
-  {
-    name: "Blog",
-    link: "/en/blog/",
-    primary: false,
-    external: false,
-  },
-  {
-    name: "Ayo Ngulik!",
-    link: "/en/notes",
-    primary: false,
-    external: true,
-  },
-  {
-    name: "Contact",
-    link: "/en/contact/",
-    primary: true,
-    external: false,
-  },
-];
 ---
 
-<BaseLayout frontmatter={{ title: headline, summary, locale: "en" }}>
-  <header class="border-b-2 border-gray-300 sticky top-0 bg-gray-100">
-    <nav class="max-w-screen-lg mx-auto p-4 flex items-center">
-      <div class="flex-1">
-        <span class="font-sans-title text-md sm:text-lg tracking-tighter"
-          >Rahmanda Wibowo.</span
-        >
-      </div>
-      <ul class="flex-none flex gap-6 text-sm sm:text-md">
-        {
-          navs.map((nav) => (
-            <li>
-              {nav.primary ? (
-                <a
-                  class="px-2 py-1 rounded bg-gray-900 text-white font-sans-title"
-                  href={nav.link}
-                >
-                  {nav.name}
-                </a>
-              ) : (
-                <a class="hidden sm:flex gap-1 hover:underline" href={nav.link}>
-                  {nav.name}
-                  {nav.external && (
-                    <svg
-                      class="w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-arrow-up-right"
-                    >
-                      <line x1="7" y1="17" x2="17" y2="7" />
-                      <polyline points="7 7 17 7 17 17" />
-                    </svg>
-                  )}
-                </a>
-              )}
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-  </header>
-  <main class="max-w-screen-lg mx-auto px-4">
-    <section class="mt-16 sm:mt-24 mb-12 sm:mb-16">
-      <header class="mb-12">
-        <h1 class="font-sans-title text-4xl sm:text-6xl">{headline}</h1>
-      </header>
-
-      <p class="text-lg sm:text-xl">
-        My name is Rahmanda. I'm a software engineer based in Indonesia,
-        specializing in web development and productivity tools. I provide
-        services to improve the effectiveness and efficiency of the tech
-        implementation within companies and institutions.
-      </p>
-    </section>
-
-    <section class="mb-14">
-      <h2 class="font-sans-title text-2xl sm:text-4xl my-4 sm:my-6">
-        Projects.
-      </h2>
-      <p class="sm:text-lg mb-6">
-        Here are selected personal projects I've been working on. The tech
-        behind the system can be used for learning purposes. The content can be
-        served as a contribution to society.
-      </p>
-      <ul class="grid grid-cols-1 sm:grid-cols-3 auto-rows-max gap-8">
-        {
-          projects.map((project) => (
-            <li>
-              <article class="border-2 border-gray-300 p-4 sm:p-6 rounded-lg h-full">
-                <a
-                  href={project.link}
-                  target="_blank"
-                  class="flex gap-1 mb-2 sm:mb-3 hover:underline"
-                >
-                  <h3 class="text-lg sm:text-xl font-sans-title">
-                    {project.title}
-                  </h3>
-                  <svg
-                    class="w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-arrow-up-right"
-                  >
-                    <line x1="7" y1="17" x2="17" y2="7" />
-                    <polyline points="7 7 17 7 17 17" />
-                  </svg>
-                </a>
-                <p class="text-pretty">{project.summary}</p>
-              </article>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-
-    <section class="mb-14">
-      <h2 class="font-sans-title text-2xl md:text-4xl my-6">
-        Featured articles.
-      </h2>
-      <p class="sm:text-lg mb-6">
-        I write in-depth articles about software development, productivity
-        hacks, and personal opinions. Available in <a
-          class="underline"
-          href="/id/blog">Bahasa Indonesia</a
-        > and <a class="underline" href="/en/blog">English</a>.
-      </p>
-      <ul class="grid grid-cols-1 sm:grid-cols-2 auto-rows-fr gap-8 mb-6">
-        {
-          articles.map((article) => (
-            <li>
-              <article class="border-2 border-gray-300 p-4 sm:p-6 rounded-lg h-full">
-                <a class="hover:underline" href={article.link}>
-                  <h3 class="text-lg sm:text-xl font-sans-title mb-2 sm:mb-3">
-                    {article.title}
-                  </h3>
-                </a>
-                <p>{article.summary}</p>
-              </article>
-            </li>
-          ))
-        }
-      </ul>
-      <div>
-        <p class="sm:text-lg">
-          Read more articles on
-          <a class="underline" href="/en/blog">my blog</a>.
-        </p>
-      </div>
-    </section>
-
-    <section class="mb-14">
-      <h2 class="font-sans-title text-2xl sm:text-4xl my-6">Let's connect!</h2>
-      <p class="sm:text-lg mb-6">
-        You're always welcome to contact me via <a
-          class="underline"
-          href={SOCIAL_MEDIA.linkedin}
-          target="_blank">Linkedin</a
-        >, and <a class="underline" href={SOCIAL_MEDIA.email} target="_blank"
-          >Email</a
-        >.
-      </p>
-    </section>
-  </main>
-
-  <Footer locale="en" />
-</BaseLayout>
+<Homepage
+  summary={summary}
+  headline={headline}
+  subheadline={subheadline}
+  projects={projects}
+  articles={articles}
+  locale={locale}
+/>
