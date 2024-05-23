@@ -1,0 +1,32 @@
+---
+import { formatDate } from "src/utils/date";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"blog">;
+  locale: "en" | "id";
+}
+
+const { entry, locale } = Astro.props;
+
+const articleLink = `/${locale}/blog/${entry.slug}/`;
+---
+
+<article class="border-2 border-gray-300 rounded-lg p-6 h-full">
+  <a href={articleLink} class="group">
+    <aside class="mb-2">
+      <time
+        datetime={formatDate(entry.data.published_date, locale)}
+        class="text-sm text-gray-600"
+      >
+        {formatDate(entry.data.published_date, locale)}
+      </time>
+    </aside>
+    <h2
+      class="font-sans-title text-xl sm:text-2xl mb-2 sm:mb-4 group-hover:underline"
+    >
+      {entry.data.title}
+    </h2>
+    <p>{entry.data.summary}</p>
+  </a>
+</article>
