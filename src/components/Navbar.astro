@@ -47,8 +47,16 @@ const homepageLink = `/${locale === "id" ? "id" : ""}`;
           ></path>
         </svg>
       </li>
-      <li><a href={slug.replace("/en/", "/id/")}>Bahasa Indonesia</a></li>
-      <li><a href={slug.replace("/id/", "/en/")}>English</a></li>
+      <li>
+        <a
+          class:list={[locale === "id" && "underline"]}
+          href={slug.replace("/en/", "/id/")}>Bahasa Indonesia</a>
+      </li>
+      <li>
+        <a
+          class:list={[locale === "en" && "underline"]}
+          href={slug.replace("/id/", "/en/")}>English</a>
+      </li>
     </ul>
   </div>
 </aside>

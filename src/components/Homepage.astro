@@ -69,8 +69,13 @@ const blogLink = `/${locale}/blog`;
             ></path>
           </svg>
         </li>
-        <li><a href="/id">Bahasa Indonesia</a></li>
-        <li><a href="/">English</a></li>
+        <li>
+          <a class:list={[locale === "id" && "underline"]} href="/id"
+            >Bahasa Indonesia</a>
+        </li>
+        <li>
+          <a class:list={[locale === "en" && "underline"]} href="/">English</a>
+        </li>
       </ul>
     </div>
   </aside>
