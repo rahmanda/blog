@@ -24,19 +24,19 @@ const { headline, summary, subheadline, projects, articles, locale } =
 const navs = [
   {
     name: "Blog",
-    link: "/en/blog/",
+    link: `/${locale}/blog`,
     primary: false,
     external: false,
   },
   {
     name: "Ayo Ngulik!",
-    link: "/en/notes",
+    link: `/${locale}/notes`,
     primary: false,
     external: true,
   },
   {
     name: t[locale].contact,
-    link: "/en/contact/",
+    link: `/${locale}/contact`,
     primary: true,
     external: false,
   },

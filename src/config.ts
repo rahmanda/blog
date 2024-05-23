@@ -36,7 +36,7 @@ export const t = {
     featured: "Featured",
     featured_articles: "Artikel pilihan",
     project_description:
-      "Berikut adalah kumpulan projek saya. Sistem teknologi yang dibangun, saya pakai untuk sumber belajar, sedangkan kontennya diharapkan bisa bermanfaat untuk publik.",
+      "Ini adalah kumpulan projek pribadi saya. Sistem teknologi yang dibangun, saya pakai untuk sumber belajar, sedangkan kontennya diharapkan bisa bermanfaat untuk publik.",
     read_article: "Baca artikel",
     articles_description:
       'Saya menulis artikel tentang software development, productivity hacks, dan opini pribadi. Tersedia dalam <a class="underline" href="/id/blog">Bahasa Indonesia</a> dan <a class="underline" href="/en/blog">Bahasa Inggris</a>.',
