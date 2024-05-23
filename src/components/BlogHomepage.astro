@@ -48,7 +48,7 @@ const viewAllPostsLink = `/${locale}/blog/archives`;
 const viewAllNotesLink = `/${locale}/notes`;
 ---
 
-<BaseLayout frontmatter={{ title, summary }}>
+<BaseLayout frontmatter={{ title, summary, locale }}>
   <Navbar locale={locale} />
 
   <main class="px-4 max-w-screen-lg mx-auto">
@@ -58,7 +58,10 @@ const viewAllNotesLink = `/${locale}/notes`;
           >{t[locale].featured}</span
         >
         <p class="text-sm">
-          {featuredEntry && formatDate(featuredEntry.data.published_date)}
+          {
+            featuredEntry &&
+              formatDate(featuredEntry.data.published_date, locale)
+          }
         </p>
       </aside>
       <h2 class="font-sans-title text-3xl sm:text-5xl mb-4 sm:mb-6">
@@ -103,9 +106,15 @@ const viewAllNotesLink = `/${locale}/notes`;
                   <article class="border-2 border-gray-300 rounded-lg p-6 h-full">
                     <a href={`/${locale}/blog/${entry.slug}/`} class="group">
                       <aside class="mb-2">
-                        <span class="text-sm">
-                          {formatDate(entry.data.published_date)}
-                        </span>
+                        <time
+                          datetime={formatDate(
+                            entry.data.published_date,
+                            locale,
+                          )}
+                          class="text-sm text-gray-600"
+                        >
+                          {formatDate(entry.data.published_date, locale)}
+                        </time>
                       </aside>
                       <h2 class="font-sans-title text-xl sm:text-2xl mb-2 sm:mb-4 group-hover:underline">
                         {entry.data.title}
@@ -158,9 +167,15 @@ const viewAllNotesLink = `/${locale}/notes`;
                   <article class="bg-gray-200 rounded-lg p-6 h-full">
                     <a href={`/${locale}/notes/${entry.slug}/`} class="group">
                       <aside class="mb-2">
-                        <span class="text-sm">
-                          {formatDate(entry.data.published_date)}
-                        </span>
+                        <time
+                          datetime={formatDate(
+                            entry.data.published_date,
+                            locale,
+                          )}
+                          class="text-sm text-gray-600"
+                        >
+                          {formatDate(entry.data.published_date, locale)}
+                        </time>
                       </aside>
                       <h2 class="font-sans-title text-lg sm:text-xl group-hover:underline">
                         {entry.data.title}

@@ -14,7 +14,7 @@ function getTitle(title: string) {
 const title = getTitle(frontmatter?.title);
 ---
 
-<html lang="id">
+<html lang={frontmatter?.locale ?? "id"}>
   <head>
     <Meta title={title} description={frontmatter?.summary} />
     <slot name="head" />
