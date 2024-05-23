@@ -1,9 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import { formatDate } from "../utils/date";
-import BaseLayout from "../layouts/Base.astro";
+import { formatDate } from "src/utils/date";
+import { t } from "src/config";
+import BaseLayout from "src/layouts/Base.astro";
 import Navbar from "./Navbar.astro";
 import Footer from "./Footer.astro";
+import NoteCard from "./NoteCard.astro";
 
 interface Props {
   locale: "en" | "id";
@@ -23,25 +25,6 @@ const noteEntries = (await getCollection("notes")).filter(
 );
 
 const featuredEntry = blogEntries.pop();
-
-const t = {
-  en: {
-    featured: "Featured",
-    read_article: "Read article",
-    notes_description:
-      "Collection of my tiny gists. They contain some weird stuffs or cool tricks I found during work.",
-    view_all_posts: "View all posts",
-    view_all_notes: "View all notes",
-  },
-  id: {
-    featured: "Featured",
-    read_article: "Baca artikel",
-    notes_description:
-      "Koleksi catatan-catatan kecil saya. Isinya bisa berupa hal-hal aneh atau trik keren yang saya temukan saat bekerja.",
-    view_all_posts: "Lihat semua postingan",
-    view_all_notes: "Lihat semua notes",
-  },
-};
 
 const featuredEntryLink = `/${locale}/blog/${featuredEntry?.slug}`;
 const viewAllPostsLink = `/${locale}/blog/archives`;
@@ -164,24 +147,7 @@ const viewAllNotesLink = `/${locale}/notes`;
               .slice(0, 6)
               .map((entry) => (
                 <li>
-                  <article class="bg-gray-200 rounded-lg p-6 h-full">
-                    <a href={`/${locale}/notes/${entry.slug}/`} class="group">
-                      <aside class="mb-2">
-                        <time
-                          datetime={formatDate(
-                            entry.data.published_date,
-                            locale,
-                          )}
-                          class="text-sm text-gray-600"
-                        >
-                          {formatDate(entry.data.published_date, locale)}
-                        </time>
-                      </aside>
-                      <h2 class="font-sans-title text-lg sm:text-xl group-hover:underline">
-                        {entry.data.title}
-                      </h2>
-                    </a>
-                  </article>
+                  <NoteCard entry={entry} locale={locale} />
                 </li>
               ))
         }

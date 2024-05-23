@@ -11,3 +11,22 @@ export const SOCIAL_MEDIA = {
   x: "https://x.com/rahmandawibowo",
   github: "https://github.com/rahmanda",
 };
+
+export const t = {
+  en: {
+    featured: "Featured",
+    read_article: "Read article",
+    notes_description:
+      "Collection of my tiny gists. They contain some weird stuffs or cool tricks I found during work.",
+    view_all_posts: "View all posts",
+    view_all_notes: "View all notes",
+  },
+  id: {
+    featured: "Featured",
+    read_article: "Baca artikel",
+    notes_description:
+      "Koleksi catatan-catatan kecil saya. Isinya bisa berupa hal-hal aneh atau trik keren yang saya temukan saat bekerja.",
+    view_all_posts: "Lihat semua postingan",
+    view_all_notes: "Lihat semua notes",
+  },
+};

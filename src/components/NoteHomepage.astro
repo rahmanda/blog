@@ -1,0 +1,75 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "src/layouts/Base.astro";
+import Navbar from "src/components/Navbar.astro";
+import Footer from "src/components/Footer.astro";
+import NoteCard from "src/components/NoteCard.astro";
+
+interface Props {
+  summary: string;
+  locale: "en" | "id";
+}
+
+const { summary, locale } = Astro.props;
+
+const noteEntries = (await getCollection("notes")).filter(
+  (entry) => entry.data.language === locale,
+);
+
+const entriesGroupByYear: Record<string, any[]> = {};
+
+for (const entry of noteEntries) {
+  const year = entry.data.published_date.getFullYear();
+  if (entriesGroupByYear[year]) {
+    entriesGroupByYear[year].push(entry);
+  } else {
+    entriesGroupByYear[year] = [entry];
+  }
+}
+
+const title = "Notes";
+---
+
+<BaseLayout frontmatter={{ title, summary, locale }}>
+  <Navbar locale={locale} />
+
+  <main class="mt-12 sm:mt-20 max-w-screen-lg mx-auto px-4 mb-20 sm:mb-24">
+    <header class="border-b-2 border-gray-300 pb-3 sm:pb-5">
+      <h1
+        class="font-sans-title text-4xl sm:text-6xl mb-5 sm:mb-8 text-balance"
+      >
+        {title}.
+      </h1>
+      <p class="text-lg sm:text-2xl leading-7 sm:leading-9 sm:text-balance">
+        {summary}
+      </p>
+    </header>
+    {
+      Object.keys(entriesGroupByYear)
+        .sort((a, b) => Number(b) - Number(a))
+        .map((year) => (
+          <section class="mt-8 sm:mt-10">
+            <>
+              <h2 class="font-sans-title text-3xl sm:text-5xl text-gray-400 mb-6 sm:mb-8">
+                {year}
+              </h2>
+              <ul class="grid grid-cols-1 sm:grid-cols-3 auto-rows-fr gap-8 mb-8">
+                {entriesGroupByYear[year]
+                  .sort(
+                    (a, b) =>
+                      b.data.published_date.getTime() -
+                      a.data.published_date.getTime(),
+                  )
+                  .map((entry) => (
+                    <li>
+                      <NoteCard entry={entry} locale={locale} />
+                    </li>
+                  ))}
+              </ul>
+            </>
+          </section>
+        ))
+    }
+  </main>
+  <Footer locale={locale} />
+</BaseLayout>

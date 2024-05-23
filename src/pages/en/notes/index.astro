@@ -1,0 +1,8 @@
+---
+import NoteHomepage from "src/components/NoteHomepage.astro";
+import { t } from "src/config";
+
+const locale = "en";
+---
+
+<NoteHomepage summary={t[locale].notes_description} locale={locale} />
