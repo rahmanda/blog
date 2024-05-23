@@ -7,7 +7,7 @@ import { formatDate } from "src/utils/date";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  entry: CollectionEntry<"blog">;
+  entry: CollectionEntry<"blog" | "notes">;
   locale: "en" | "id";
 }
 
@@ -15,9 +15,7 @@ const { entry, locale } = Astro.props;
 
 const { Content, remarkPluginFrontmatter } = await entry.render();
 
-const minutesRead = Math.ceil(
-  remarkPluginFrontmatter.readingTime.minutes as Number,
-);
+const minutesRead = Math.ceil(remarkPluginFrontmatter.readingTime.minutes);
 
 const t = {
   en: {
