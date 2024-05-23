@@ -13,14 +13,20 @@ interface Props {
 
 const { entry, locale } = Astro.props;
 
-const { Content } = await entry.render();
+const { Content, remarkPluginFrontmatter } = await entry.render();
+
+const minutesRead = Math.ceil(
+  remarkPluginFrontmatter.readingTime.minutes as Number,
+);
 
 const t = {
   en: {
     published_on: "Published on",
+    reading_time: `${minutesRead} ${minutesRead > 1 ? "minutes" : "minute"} to read`,
   },
   id: {
     published_on: "Diterbitkan pada",
+    reading_time: `Baca ${minutesRead} menit`,
   },
 };
 ---
@@ -48,8 +54,8 @@ const t = {
             >{t[locale].published_on}
             {formatDate(entry.data.published_date, locale)}</time
           >
-          <span class="text-xs sm:text-sm">•</span>
-          <span>2 minutes read</span>
+          <span class="text-[6px]">•</span>
+          <span>{t[locale].reading_time}</span>
         </aside>
       </header>
 
