@@ -6,6 +6,7 @@ import BaseLayout from "src/layouts/Base.astro";
 import Navbar from "./Navbar.astro";
 import Footer from "./Footer.astro";
 import NoteCard from "./NoteCard.astro";
+import BlogCard from "./BlogCard.astro";
 
 interface Props {
   locale: "en" | "id";
@@ -27,7 +28,7 @@ const noteEntries = (await getCollection("notes")).filter(
 const featuredEntry = blogEntries.pop();
 
 const featuredEntryLink = `/${locale}/blog/${featuredEntry?.slug}`;
-const viewAllPostsLink = `/${locale}/blog/archives`;
+const viewAllPostsLink = `/${locale}/blog/archive`;
 const viewAllNotesLink = `/${locale}/notes`;
 ---
 
@@ -86,25 +87,7 @@ const viewAllNotesLink = `/${locale}/notes`;
               .slice(0, 6)
               .map((entry) => (
                 <li>
-                  <article class="border-2 border-gray-300 rounded-lg p-6 h-full">
-                    <a href={`/${locale}/blog/${entry.slug}/`} class="group">
-                      <aside class="mb-2">
-                        <time
-                          datetime={formatDate(
-                            entry.data.published_date,
-                            locale,
-                          )}
-                          class="text-sm text-gray-600"
-                        >
-                          {formatDate(entry.data.published_date, locale)}
-                        </time>
-                      </aside>
-                      <h2 class="font-sans-title text-xl sm:text-2xl mb-2 sm:mb-4 group-hover:underline">
-                        {entry.data.title}
-                      </h2>
-                      <p>{entry.data.summary}</p>
-                    </a>
-                  </article>
+                  <BlogCard entry={entry} locale={locale} />
                 </li>
               ))
         }

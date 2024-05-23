@@ -20,6 +20,8 @@ export const t = {
       "Collection of my tiny gists. They contain some weird stuffs or cool tricks I found during work.",
     view_all_posts: "View all posts",
     view_all_notes: "View all notes",
+    archive: "Archive",
+    archive_description: "Archive of all blog articles by Rahmanda Wibowo.",
   },
   id: {
     featured: "Featured",
@@ -28,5 +30,7 @@ export const t = {
       "Koleksi catatan-catatan kecil saya. Isinya bisa berupa hal-hal aneh atau trik keren yang saya temukan saat bekerja.",
     view_all_posts: "Lihat semua postingan",
     view_all_notes: "Lihat semua notes",
+    archive: "Arsip",
+    archive_description: "Arsip untuk semua artikel blog oleh Rahmanda Wibowo.",
   },
 };
