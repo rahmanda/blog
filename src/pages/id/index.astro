@@ -1,0 +1,61 @@
+---
+import Homepage from "src/components/Homepage.astro";
+
+const locale = "id";
+
+const headline = "Making positive impacts through software and data analysis.";
+const summary =
+  "Rahmanda Wibowo adalah software engineer yang memiliki spesialisasi di bidang web development. Rahmanda menyediakan layanan profesional untuk meningkatkan kualitas pengembangan software di perusahaan dan institusi.";
+const subheadline =
+  "Hai, saya Rahmanda. Saya adalah software engineer yang memiliki spesialisasi di bidang web development dan productivity tools. Saya menyediakan layanan profesional untuk meningkatkan efektivitas dan efisiensi pada pengembangan software di perusahaan dan institusi.";
+const projects = [
+  {
+    title: "Ayo Ngulik!",
+    summary:
+      "Platform untuk belajar pemrograman — menyediakan materi gratis dan simpel supaya semua orang bisa menyerap skill IT dengan cepat.",
+    link: "https://ayongulik.com/?rel=personalweb",
+  },
+  {
+    title: "Nusadata",
+    summary:
+      "Kumpulan fakta unik dan menarik tentang kehidupan urban di Indonesia melalui visualisasi data dan statistik.",
+    link: "https://nusadata.org/?rel=personalweb",
+  },
+];
+
+const articles = [
+  {
+    title:
+      "Bagaimana Cara Mengelola Struktur Folder di Projek JS dengan Efektif.",
+    summary:
+      "Struktur folder mungkin terlihat sepele. Tetapi kalau dilakukan dengan benar, kamu bisa mendapatkan banyak manfaat.",
+    link: "/id/blog/bagaimana-cara-mengelola-struktur-folder-di-projek-js-dengan-efektif/",
+  },
+  {
+    title: "Peran Hoisting dalam Meningkatkan Keterbacaan Kode Javascript.",
+    summary: "Pendapat kurang populer terhadap hoisting dan penggunaannya.",
+    link: "/id/blog/peran-hoisting-dalam-meningkatkan-keterbacaan-kode/",
+  },
+  {
+    title: "Javascript This.",
+    summary:
+      "Mencoba menjelaskan operator 'this' di Javascript berdasarkan pemahaman saya.",
+    link: "/id/blog/javascript-operator-this/",
+  },
+  {
+    title: "Memahami Closure di Javascript.",
+    summary:
+      "Saya menjelaskan konsep scope dan closure di Javascript dan bagaimana contoh penggunaannya.",
+    link: "/id/blog/memahami-closure-di-javascript/",
+  },
+];
+---
+
+<Homepage
+  summary={summary}
+  headline={headline}
+  subheadline={subheadline}
+  projects={projects}
+  articles={articles}
+  locale={locale}
+/>
