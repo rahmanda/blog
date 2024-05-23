@@ -14,16 +14,25 @@ interface Props {
 const { entry, locale } = Astro.props;
 
 const { Content } = await entry.render();
+
+const t = {
+  en: {
+    published_on: "Published on",
+  },
+  id: {
+    published_on: "Diterbitkan pada",
+  },
+};
 ---
 
 <BaseLayout
-  frontmatter={{ title: entry.data.title, summary: entry.data.summary }}
+  frontmatter={{ title: entry.data.title, summary: entry.data.summary, locale }}
 >
   <Navbar locale={locale} />
 
   <main class="mt-12 sm:mt-20 max-w-screen-lg mx-auto px-4 mb-20 sm:mb-24">
     <article>
-      <header class="pb-3 sm:pb-4 border-b-2 border-gray-300">
+      <header class="pb-2 sm:pb-3 border-b-2 border-gray-300">
         <h1
           class="font-sans-title text-4xl sm:text-6xl mb-5 sm:mb-8 text-balance"
         >
@@ -34,9 +43,10 @@ const { Content } = await entry.render();
         >
           {entry.data.summary}
         </p>
-        <aside class="text-sm sm:text-lg text-gray-500 flex items-center gap-2">
-          <time datetime={formatDate(entry.data.published_date)}
-            >{formatDate(entry.data.published_date)}</time
+        <aside class="text-sm sm:text-md text-gray-500 flex items-center gap-2">
+          <time datetime={formatDate(entry.data.published_date, locale)}
+            >{t[locale].published_on}
+            {formatDate(entry.data.published_date, locale)}</time
           >
           <span class="text-xs sm:text-sm">•</span>
           <span>2 minutes read</span>
