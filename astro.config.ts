@@ -1,6 +1,7 @@
 import { defineConfig, passthroughImageService } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import { RemarkLinkRewrite } from "./src/plugins/link-rewrite";
+import { RemarkReadingTime } from "./src/plugins/reading-time";
 
 import mdx from "@astrojs/mdx";
 
@@ -36,13 +37,14 @@ export default defineConfig({
         RemarkLinkRewrite,
         {
           replacer: (url: string) => {
-            if (url.startsWith("/web")) {
-              return url.replace("/web", BASE_PATH);
+            if (url.startsWith("/blog")) {
+              return url.replace("/blog", BASE_PATH);
             }
             return url;
           },
         },
       ],
+      RemarkReadingTime,
     ],
   },
   integrations: [tailwind(), mdx()],
