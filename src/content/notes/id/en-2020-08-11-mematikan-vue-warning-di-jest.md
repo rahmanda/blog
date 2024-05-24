@@ -5,21 +5,24 @@ published_date: 2020-08-31
 language: id
 type: til
 translations:
-  en: /til/en/#silent-vue-warning-on-jest
+  id: mematikan-vue-warning-di-jest
+  en: silent-vue-warning-on-jest
 ---
 
 Kalau kamu perlu menggunakan `shallowMount` tetapi aplikasi kamu menggunakan komponen global, kamu mungkin akan terganggu dengan banyaknya log warning yang muncul pada terminal kamu saat menjalankan skrip unit testing.
 
 Untuk mematikan warning tersebut, taruh kode dibawah ini pada setup files yang kamu definisikan dalam [konfigurasi jest kamu](https://jestjs.io/docs/en/configuration#setupfilesafterenv-array).
 
-``` js
+```js
 global.beforeEach(() => {
   // surpress Vue warn
-  spyOnConsoleError = jest.spyOn(global.console, 'error').mockImplementation(message => {
-    if (!String(message).includes('[Vue warn]: : Unknown custom element')) {
-      consoleError(message);
-    }
-  });
+  spyOnConsoleError = jest
+    .spyOn(global.console, "error")
+    .mockImplementation((message) => {
+      if (!String(message).includes("[Vue warn]: : Unknown custom element")) {
+        consoleError(message);
+      }
+    });
 });
 ```
 

@@ -27,12 +27,19 @@ const t = {
     reading_time: `Baca ${minutesRead} menit`,
   },
 };
+
+const translationSlugs = !!entry.data.translations
+  ? {
+      en: `blog/${entry.data.translations.en}`,
+      id: `blog/${entry.data.translations.id}`,
+    }
+  : undefined;
 ---
 
 <BaseLayout
   frontmatter={{ title: entry.data.title, summary: entry.data.summary, locale }}
 >
-  <Navbar locale={locale} slug={`/${locale}/blog/${entry.slug}`} />
+  <Navbar locale={locale} slug={translationSlugs} />
 
   <main class="mt-12 sm:mt-20 max-w-screen-lg mx-auto px-4 mb-20 sm:mb-24">
     <article>
@@ -58,7 +65,7 @@ const t = {
       </header>
 
       <div
-        class="pt-4 sm:pt-6 prose sm:prose-lg prose-pre:border-2 prose-pre:rounded-lg prose-pre:p-2 prose-pre:!bg-gray-50 prose-h1:font-semibold prose-h1:text-3xl md:prose-h1:text-4xl prose-h2:font-semibold prose-h2:text-xl md:prose-h2:text-2xl prose-h3:text-lg md:prose-h3:text-xl prose-h1:font-sans-title prose-h2:font-sans-title prose-h3:font-sans-title prose-h4:font-sans-title prose-h1:text-pretty prose-h2:text-pretty prose-h3:text-pretty prose-h4:text-pretty prose-hr:border-t-2 prose-hr:border-gray-300"
+        class="pt-8 sm:pt-10 prose sm:prose-lg prose-pre:border-2 prose-pre:rounded-lg prose-pre:p-2 prose-pre:!bg-gray-50 prose-h1:font-semibold prose-h1:text-3xl md:prose-h1:text-4xl prose-h2:font-semibold prose-h2:text-xl md:prose-h2:text-2xl prose-h3:text-lg md:prose-h3:text-xl prose-h1:font-sans-title prose-h2:font-sans-title prose-h3:font-sans-title prose-h4:font-sans-title prose-h1:text-pretty prose-h2:text-pretty prose-h3:text-pretty prose-h4:text-pretty prose-hr:border-t-2 prose-hr:border-gray-300"
       >
         <Content />
       </div>

@@ -7,7 +7,8 @@ language: id
 type: blog
 category: vue
 translations:
-  en: /blog/en/vue-portal-in-action/
+  id: studi-kasus-penggunaan-vue-portal
+  en: vue-portal-in-action
 ---
 
 Apakah kamu pernah galau saat mengubah state suatu komponen dari komponen lain yang sangat jauh posisinya di dalam struktur komponen kamu? Daripada membuat terlalu banyak emitter yang melalui beberapa lapisan komponen, mungkin pada akhirnya kamu memilih untuk menggunakan event bus atau sebuah state management saja. Sekarang dengan adanya konsep portal, kamu baru saja menemukan sebuah alternatif lain.
@@ -24,7 +25,7 @@ Agar kamu lebih paham bagaimana mengimplementasikan konsep ini secara nyata, say
 
 Misalkan aplikasi kita memiliki beberapa button. Saat kita mengklik button, modal akan muncul.
 
-``` html
+```html
 <!-- komponen utama -->
 <!-- App.vue -->
 <template>
@@ -50,42 +51,43 @@ Misalkan aplikasi kita memiliki beberapa button. Saat kita mengklik button, moda
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      showCreateModal: false,
-      showEditModal: false,
-      showConfirmModal: false,
-    };
-  },
-  methods: {
-    openCreateModal() {
-      this.showCreateModal = true;
+  export default {
+    data() {
+      return {
+        showCreateModal: false,
+        showEditModal: false,
+        showConfirmModal: false,
+      };
     },
-    closeCreateModal() {
-      this.showCreateModal = false;
+    methods: {
+      openCreateModal() {
+        this.showCreateModal = true;
+      },
+      closeCreateModal() {
+        this.showCreateModal = false;
+      },
+      openEditModal() {
+        this.showEditModal = true;
+      },
+      closeEditModal() {
+        this.showEditModal = false;
+      },
+      openConfirmModal() {
+        this.showConfirmModal = true;
+      },
+      closeConfirmModal() {
+        this.showConfirmModal = false;
+      },
     },
-    openEditModal() {
-      this.showEditModal = true;
-    },
-    closeEditModal() {
-      this.showEditModal = false;
-    },
-    openConfirmModal() {
-      this.showConfirmModal = true;
-    },
-    closeConfirmModal() {
-      this.showConfirmModal = false;
-    },
-  },
-};
+  };
 </script>
 ```
+
 Apabila kita ingin membuat modal yang baru, kita perlu membuat sebuah state dan method untuk mengontrol state-nya. Tapi setelah diperhatikan, ternyata modal ini hanya berinteraksi dengan button yang berhubungan saja. Untuk memperbaikinya, kita bisa membuat sebuah abstraksi untuk menaruh semua logic yang relevan ke dalam satu tempat.
 
 Permasalahannya, kita tidak dapat memindahkan komponen modal keluar untuk mengurangi logic di dalam `App.vue`. Semua modal harus tetap berada di `App.vue` karena kita perlu menerapkankan `z-index` yang bergantung kepada kedalaman dari sebuah tag (tag child tidak bisa tampil di atas parent tag-nya meskipun tag-nya mempunyai nilai `z-index` yang lebih tinggi). Dengan [vue-portal](https://portal-vue.linusb.org/), kita bisa mengelompokkan button dan modal menjadi satu komponen.
 
-``` html
+```html
 <!-- CreatePostButton.vue -->
 <template>
   <button @click="openModal">
@@ -102,49 +104,49 @@ Permasalahannya, kita tidak dapat memindahkan komponen modal keluar untuk mengur
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      showModal: false,
-    };
-  },
-  methods: {
-    openModal() {
-      this.showModal = true;
+  export default {
+    data() {
+      return {
+        showModal: false,
+      };
     },
-    closeModal() {
-      this.showModal = false;
+    methods: {
+      openModal() {
+        this.showModal = true;
+      },
+      closeModal() {
+        this.showModal = false;
+      },
     },
-  },
-};
+  };
 </script>
 
 <!-- App.vue -->
 <template>
   <div>
     <div class="actions">
-      <create-post-button/>
-      <edit-post-button/>
-      <delete-post-button/>
+      <create-post-button />
+      <edit-post-button />
+      <delete-post-button />
     </div>
 
     <!-- secara default, portal-target akan menjadi sebuah tag div pada DOM -->
-    <portal-target name="app"/>
+    <portal-target name="app" />
   </div>
 </template>
 
 <script>
-import CreatePostButton from './CreatePostButton.vue';
-import EditPostButton from './EditPostButton.vue';
-import DeletePostButton from './DeletePostButton.vue';
+  import CreatePostButton from "./CreatePostButton.vue";
+  import EditPostButton from "./EditPostButton.vue";
+  import DeletePostButton from "./DeletePostButton.vue";
 
-export default {
-  components: {
-    CreatePostButton,
-    EditPostButton,
-    DeletePostButton,
-  },
-};
+  export default {
+    components: {
+      CreatePostButton,
+      EditPostButton,
+      DeletePostButton,
+    },
+  };
 </script>
 ```
 
@@ -156,21 +158,21 @@ Agak aneh memang, sekarang kita jadi punya modal di dalam tag button. Namun, ini
 
 Misalkan aplikasi kita menggunakan [vue-router](https://router.vuejs.org/) dan kita memiliki sebuah sidebar untuk bernavigasi. Konten di dalam sidebar bisa berubah tergantung dengan path yang sedang aktif. Tapi, kontainer dari sidebar-nya harus diletakkan di luar dari `router-view` untuk kegunaan styling.
 
-``` js
+```js
 // routes.js
 // impor semua komponen page
 
 export default [
-  { path: '/', component: HomePage },
-  { path: '/product', component: ProductPage },
-  { path: '/product/active', component: ProductActivePage },
-  { path: '/product/inactive', component: ProductInactivePage },
-  { path: '/product/drafted', component: ProductDraftedPage },
+  { path: "/", component: HomePage },
+  { path: "/product", component: ProductPage },
+  { path: "/product/active", component: ProductActivePage },
+  { path: "/product/inactive", component: ProductInactivePage },
+  { path: "/product/drafted", component: ProductDraftedPage },
   // ....
 ];
 ```
 
-``` html
+```html
 <!-- App.vue -->
 <template>
   <div>
@@ -188,18 +190,16 @@ export default [
       </div>
 
       <!-- ... -->
-
     </aside>
 
-    <router-view/>
-
+    <router-view />
   </div>
 </template>
 ```
 
 Kode di dalam `App.vue` kita penuh dengan pengecekan path. Agar lebih bagus, kita bisa menaruh `portal-target` di dalam tag `aside` dan memindahkan semua link ke dalam komponen page-nya masing-masing.
 
-``` html
+```html
 <!-- HomePage.vue -->
 <template>
   <div>
@@ -232,11 +232,10 @@ Kode di dalam `App.vue` kita penuh dengan pengecekan path. Agar lebih bagus, kit
 <template>
   <div>
     <!-- kamu bisa mengeset tipe tag dari portal-target menggunakan prop 'tag' -->
-    <portal-target name="app" tag="aside"/>
-    <router-view/>
+    <portal-target name="app" tag="aside" />
+    <router-view />
   </div>
 </template>
-
 ```
 
 Karena `router-view` sudah tahu bagaimana menampilkan komponen page berdasarkan path saat ini, kita tidak perlu lagi membuat kondisi apapun dalam komponen page-nya. Sekali lagi, dengan menggunakan portal `App.vue` kita menjadi lebih bersih dan semua kode berada di dalam tempat yang seharusnya.
@@ -247,7 +246,7 @@ Kamu mungkin tidak suka menggunakan pendekatan ini apabila kamu hanya memiliki s
 
 Mungkin kamu sama dengan saya, suka menggunakan [vue-promised](https://github.com/posva/vue-promised). Librari itu membantu saya untuk tidak membuat state yang berulang-ulang setiap kali ada API request. Meskipun demikian, penggunaannya menjadi kurang menyenangkan apabila ada beberapa bagian yang bergantung kepada state promise-nya. Hal ini karena state hanya bisa diakses dari dalam komponen `promised`.
 
-``` html
+```html
 <!-- App.vue -->
 <template>
   <div>
@@ -275,7 +274,7 @@ Mungkin kamu sama dengan saya, suka menggunakan [vue-promised](https://github.co
 
 Contoh di atas dapat bekerja dengan baik-baik saja, kecuali satu hal. Saya perlu mengubah bagian breadcrumb saat promise-nya telah sukses. Ayo kita coba ubah kodenya dengan menggunakan portal.
 
-``` html
+```html
 <!-- App.vue -->
 <template>
   <div>
@@ -317,4 +316,3 @@ Dengan menggunakan portal, kita bisa mendistribusikan konten dari dalam komponen
 ## Penutup
 
 Awalnya saya pikir kita hanya bisa membuat struktur aplikasi berbasiskan kepada hubungan antara parent dan child komponen saja. Namun dengan adanya portal, kita bisa menghapus limitasi tersebut sehingga kita bisa memperbanyak cara dalam strukturisasi aplikasi kita tanpa terbatas kepada lokasi komponen atau template.
-

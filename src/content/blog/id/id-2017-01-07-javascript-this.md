@@ -7,7 +7,8 @@ language: id
 type: blog
 category: javascript
 translations:
-  en: /en/javascript-this/
+  id: javascript-operator-this
+  en: javascript-this
 ---
 
 Operator `this` sering kali digunakan apabila kamu mengimplementasikan suatu class atau object pada bahasa pemograman berorientasi objek. Javascript tidak memiliki paradigma itu, namun Javascript mendukung penggunaan operator `this`. Tetapi karena ini Javascript, (tentu saja) cara kerja `this` akan sedikit berbeda dengan bahasa pemograman pada umumnya....

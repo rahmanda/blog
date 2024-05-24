@@ -7,7 +7,8 @@ language: en
 type: blog
 category: vue
 translations:
-  id: /blog/id/menggunakan-vue-prototype-untuk-shared-utilities
+  id: menggunakan-vue-prototype-untuk-shared-utilities
+  en: using-vue-prototype-for-shared-utilities
 ---
 
 There are several ways to create a utility function in a Vue application. However, I think Vue's prototype is the way to go if you want to provide shared utilities in your app. In this article, I will give several pros and cons for some approaches and explain why I choose prototype for this case.
@@ -16,31 +17,32 @@ There are several ways to create a utility function in a Vue application. Howeve
 
 Creating a JS module is probably the easiest way to provide a utility function. Simply write a function inside of a JS file, and then import it to your other JS file that want to use it. Below is a short example of how we can use JS module in a component.
 
-``` js
+```js
 // asset-utility.js
 
 export function imageUrl(path) {
   return `https://cdn.com/${path}`;
 }
 ```
-``` html
+
+```html
 <template>
   <div>
-    <img :src="logoUrl">
+    <img :src="logoUrl" />
   </div>
 </template>
 
 <script>
-// then in your component
-import { imageUrl } from './asset-utility';
+  // then in your component
+  import { imageUrl } from "./asset-utility";
 
-export default {
-  data() {
-    return {
-      logoUrl: imageUrl('/your-logo.png'),
-    };
-  },
-};
+  export default {
+    data() {
+      return {
+        logoUrl: imageUrl("/your-logo.png"),
+      };
+    },
+  };
 </script>
 ```
 
@@ -48,24 +50,24 @@ Above example shows that our function can only be used once with fixed parameter
 
 To make it simpler, how about calling the function directly inside the component's template? This way, we don't have to repeatedly create `data` or `computed` for every path or parameter. To do that, I need to make our function accessible within our component's context object.
 
-``` html
+```html
 <template>
   <!-- collection of images -->
   <div>
-    <img :src="imageUrl('/poster-image-1.jpg')">
-    <img :src="imageUrl('/poster-image-2.jpg')">
-    <img :src="imageUrl('/poster-image-3.jpg')">
+    <img :src="imageUrl('/poster-image-1.jpg')" />
+    <img :src="imageUrl('/poster-image-2.jpg')" />
+    <img :src="imageUrl('/poster-image-3.jpg')" />
   </div>
 </template>
 
 <script>
-import { imageUrl } from './asset-utility';
+  import { imageUrl } from "./asset-utility";
 
-export default {
-  methods: {
-    imageUrl,
-  },
-};
+  export default {
+    methods: {
+      imageUrl,
+    },
+  };
 </script>
 ```
 
@@ -75,7 +77,7 @@ Now our component is better, but this approach will get cumbersome quickly. Usin
 
 Since we need to make our function accessible from the component's context object, why don't we use mixins anyway?
 
-``` js
+```js
 // refactor our utility into a mixin
 // mixins/asset-utility.js
 export default {
@@ -87,22 +89,22 @@ export default {
 };
 ```
 
-``` html
+```html
 <template>
   <!-- collection of images -->
   <div>
-    <img :src="imageUrl('/poster-image-1.jpg')">
-    <img :src="imageUrl('/poster-image-2.jpg')">
-    <img :src="imageUrl('/poster-image-3.jpg')">
+    <img :src="imageUrl('/poster-image-1.jpg')" />
+    <img :src="imageUrl('/poster-image-2.jpg')" />
+    <img :src="imageUrl('/poster-image-3.jpg')" />
   </div>
 </template>
 
 <script>
-import assetUtility from './mixins/asset-utility';
+  import assetUtility from "./mixins/asset-utility";
 
-export default {
-  mixins: [assetUtility],
-};
+  export default {
+    mixins: [assetUtility],
+  };
 </script>
 ```
 
@@ -120,29 +122,28 @@ Two is I give a broad access into the utility. Even if we want it or not, now ou
 
 To avoid getting troubles from previous approaches, luckily we can use prototype for creating a utility function. Take a look at this example.
 
-
-``` js
+```js
 // our main js file
 // main.js
-import Vue from 'vue';
-import { imageUrl } from './asset-utility';
+import Vue from "vue";
+import { imageUrl } from "./asset-utility";
 
 Vue.prototype.$imageUrl = imageUrl;
 
 const app = new Vue({
- // our vue config...
+  // our vue config...
 });
 
-app.$mount('#app');
+app.$mount("#app");
 ```
 
-``` html
+```html
 <template>
   <!-- collection of images -->
   <div>
-    <img :src="$imageUrl('/poster-image-1.jpg')">
-    <img :src="$imageUrl('/poster-image-2.jpg')">
-    <img :src="$imageUrl('/poster-image-3.jpg')">
+    <img :src="$imageUrl('/poster-image-1.jpg')" />
+    <img :src="$imageUrl('/poster-image-2.jpg')" />
+    <img :src="$imageUrl('/poster-image-3.jpg')" />
   </div>
 </template>
 ```
@@ -153,9 +154,9 @@ If you look closely to the component's code, now we don't need to write anything
 
 You can also write a plugin for it to reduce prototype initialization in `main.js` file.
 
-``` js
+```js
 // plugins/asset.js
-import { imageUrl } from './asset-utility';
+import { imageUrl } from "./asset-utility";
 
 export default {
   install(Vue) {
@@ -164,19 +165,18 @@ export default {
 };
 
 // main.js
-import Vue from 'vue';
-import assetPlugin from './plugins/asset';
+import Vue from "vue";
+import assetPlugin from "./plugins/asset";
 
 Vue.use(assetPlugin);
 
 const app = new Vue({
- // our vue config...
+  // our vue config...
 });
 
-app.$mount('#app');
+app.$mount("#app");
 ```
 
 ---
 
 Now that we have reviewed several approaches of shared utilities. In my experience, shared utilities are best to be implemented as a Vue's prototype. By using Vue's prototype, we can reduce duplication while still giving us a limitation to access the component's context.
-

@@ -7,14 +7,15 @@ language: id
 type: blog
 category: javascript
 translations:
-  en: /blog/en/improving-code-readability-with-hoisting/
+  id: peran-hoisting-dalam-meningkatkan-keterbacaan-kode
+  en: improving-code-readability-with-hoisting
 ---
 
 Banyak orang yang tidak suka dengan hoisting karena sifatnya yang membingungkan. Bahkan style guide yang populer seperti [airbnb/javascript](https://github.com/airbnb/javascript#functions) merekomendasikan untuk tidak menggunakan hoisting sama sekali. Kenapa ya bisa begitu?
 
 Supaya tahu apa alasannya, coba perhatikan contoh di bawah ini.
 
-``` js
+```js
 add(1, 3);
 
 function add(a, b) {
@@ -28,12 +29,12 @@ Ternyata hasil keluarannya adalah `4` meskipun fungsi `add` dideklarasikan setel
 
 Sifat hoisting ini tidak lazim ditemukan pada bahasa pemrograman yang lain. Umumnya apabila suatu fungsi belum dideklarasikan secara eksplisit di bagian atas scope, maka akan terjadi error. Itulah mengapa banyak pemrogram, terutama yang telah memiliki pengetahuan bahasa pemrograman yang lain, merasa tidak nyaman dalam menggunakan hoisting dan membiasakan diri untuk selalu mendeklarasikan fungsi pada awal program. Beberapa orang bahkan [mengambil langkah lebih jauh](https://github.com/airbnb/javascript#functions--declarations) untuk menggunakan pola seperti ini untuk mencegah sifat hoisting muncul pada program.
 
-``` js
+```js
 add(1, 3); // ReferenceError: can't access lexical declaration `add' before initialization
 
 const add = function addFn(a, b) {
   return a + b;
-}
+};
 ```
 
 Menurut saya, contoh kode di atas hanya mempersulit keadaan karena kodenya menjadi lebih panjang dan kita harus memikirkan penamaan sebanyak dua kali, satu untuk variabel dan satu untuk nama fungsinya. Kode seperti ini juga tidak membuat menjadi lebih mudah dibaca karena pola ini juga tidak umum digunakan pada bahasa pemrograman lain.
@@ -42,12 +43,12 @@ Menurut saya, contoh kode di atas hanya mempersulit keadaan karena kodenya menja
 
 Di bawah ini adalah contoh kode sederhana yang tidak memanfaatkan hoisting (meskipun sifat hoisting-nya sendiri masih bekerja).
 
-``` js
+```js
 // anti-hoisting.js
 
-import path from 'path';
-import fs from 'fs';
-import glob from 'glob';
+import path from "path";
+import fs from "fs";
+import glob from "glob";
 
 function getFilename(filePath) {
   return path.basename(filePath, path.extname(filePath));
@@ -57,12 +58,12 @@ function readFile(filePath) {
   return {
     path: filePath,
     filename: getFilename(filePath),
-    content: fs.readFileSync(filePath, 'utf-8'),
+    content: fs.readFileSync(filePath, "utf-8"),
   };
 }
 
 function getAllFiles() {
-  const globPattern = path.join(__dirname, 'src/.md');
+  const globPattern = path.join(__dirname, "src/.md");
   const filePaths = glob.sync(globPattern);
   const files = filePaths.map(readFile);
   return files;
@@ -89,17 +90,17 @@ Salah satu tujuan awal dari menulis semua deklarasi pada bagian atas adalah agar
 
 Sekarang bandingkan dengan kode di bawah ini yang memanfaatkan hoisting (atau saya lebih suka menyebutnya metode hoisting-first).
 
-``` js
+```js
 // hoisting-first.js
 
-import path from 'path';
-import fs from 'fs';
-import glob from 'glob';
+import path from "path";
+import fs from "fs";
+import glob from "glob";
 
 export default getAllFiles;
 
 function getAllFiles() {
-  const globPattern = path.join(__dirname, 'src/.md');
+  const globPattern = path.join(__dirname, "src/.md");
   const filePaths = glob.sync(globPattern);
   const files = filePaths.map(readFile);
   return files;
@@ -109,7 +110,7 @@ function readFile(filePath) {
   return {
     path: filePath,
     filename: getFilename(filePath),
-    content: fs.readFileSync(filePath, 'utf-8'),
+    content: fs.readFileSync(filePath, "utf-8"),
   };
 }
 
@@ -141,4 +142,3 @@ Karena saya jadi penasaran kenapa kok dulu Javascript dibuatnya menggunakan hois
 <blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/DmitrySoshnikov?ref_src=twsrc%5Etfw">@DmitrySoshnikov</a> <a href="https://twitter.com/jashkenas?ref_src=twsrc%5Etfw">@jashkenas</a> yes, function declaration hoisting is for mutual recursion &amp; generally to avoid painful bottom-up ML-like order</p>&mdash; BrendanEich (@BrendanEich) <a href="https://twitter.com/BrendanEich/status/33403701100154880?ref_src=twsrc%5Etfw">February 4, 2011</a></blockquote>
 
 Bagaimana menurutmu?
-

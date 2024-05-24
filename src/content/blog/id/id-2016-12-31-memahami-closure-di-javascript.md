@@ -7,7 +7,8 @@ language: id
 type: blog
 category: javascript
 translations:
-  en: /blog/en/understanding-closure-in-javascript/
+  id: memahami-closure-di-javascript
+  en: understanding-closure-in-javascript
 ---
 
 Ketika kita membuat suatu variabel, variabel tersebut otomatis memiliki sebuah scope. Scope yang dimiliki oleh variabel bergantung kepada dimana posisi variabel tersebut dibuat.
@@ -25,35 +26,35 @@ Pada contoh program PHP di atas, variabel `$foo` terletak di luar fungsi `printF
 
 Sifat `scope` yang seperti itu dapat kita temui juga di bahasa pemograman lain seperti C, Java dan Ruby. Akan tetapi pada bahasa pemograman Javascript, sifat `scope`-nya agak berbeda.
 
-``` js
-var foo = 'bar';
+```js
+var foo = "bar";
 function printFooValue() {
-    console.log(foo);
+  console.log(foo);
 }
 printFooValue(); // menghasilkan output 'bar'
 ```
 
 Apabila contoh program di atas dijalankan, program tersebut mengeluarkan output 'bar'. Hal ini menunjukkan bahwa fungsi `printFooValue` dapat mengetahui scope di luar. Sekarang perhatikan contoh berikut:
 
-``` js
+```js
 function printFooValue() {
-    var bar = 'foo';
-    console.log(bar);
+  var bar = "foo";
+  console.log(bar);
 }
-printFooValue() // menghasilkan output 'bar'
-console.log(bar) // menghasilkan error 'Undefined variable'
+printFooValue(); // menghasilkan output 'bar'
+console.log(bar); // menghasilkan error 'Undefined variable'
 ```
 
 Variabel 'bar' yang dideklarasikan di dalam fungsi `printFooValue` ternyata tidak dikenali di luar fungsinya yang mengakibatkan error 'Undefined variable' saat di-print. Sehingga dapat kita simpulkan bahwa saat kita membuat fungsi di Javascript, fungsi tersebut membuat scope-nya sendiri dan menyimpan scope dari luar. Sifat `scope` yang demikian dikenal dengan istilah lexical scoping.
 
 ## Closure
 
-``` js
+```js
 function multiplyBy(x) {
-    function multipleByX(y) {
-        return x * y;
-    }
-    return multipleByX;
+  function multipleByX(y) {
+    return x * y;
+  }
+  return multipleByX;
 }
 var multiplyBy2 = multiplyBy(2);
 var multiplyBy10 = multiplyBy(10);
@@ -69,28 +70,28 @@ Pada bahasa pemograman yang tidak mendukung lexical scoping, variabel lokal akan
 
 Kita sudah tahu bahwa Javascript tidak memiliki konsep OOP. Meskipun demikian, kita masih bisa membuat suatu private method di Javascript dengan memanfaatkan closure. Perhatikan contoh berikut ini:
 
-``` js
+```js
 function Giraffe() {
-    var eatingObject = 'leaves';
+  var eatingObject = "leaves";
 
-    function eat() {
-        console.log('Giraffe is eating ' + place);
-    }
+  function eat() {
+    console.log("Giraffe is eating " + place);
+  }
 
-    return {
-        eating: function() {
-            eat();
-        },
-        changeFood: function(food) {
-            eatingObject = food;
-        }
-    };
+  return {
+    eating: function () {
+      eat();
+    },
+    changeFood: function (food) {
+      eatingObject = food;
+    },
+  };
 }
 var babyGiraffe = Giraffe();
 babyGiraffe.eat(); // error 'Undefined property'
 babyGiraffe.eatingObject; // error 'Undefined property'
 babyGiraffe.eating(); // output 'Giraffe is eating leaves'
-babyGiraffe.changeFood('french fries');
+babyGiraffe.changeFood("french fries");
 babyGiraffe.eating(); // output 'Giraffe is eating french fries'
 ```
 
@@ -101,4 +102,3 @@ Contoh di atas juga menunjukkan bahwa variabel `eatingObject` dan fungsi `eat` h
 ---
 
 Konsep lexical scoping dan closure merupakan fondasi utama dari pemograman Javascript. Lucunya, saya sendiri baru kenal konsep ini setelah sekian banyak baris kode yang sudah saya buat yang ternyata telah mengaplikasikan closure. Kedepannya saya akan lebih banyak lagi menulis tentang dasar-dasar pemograman Javascript. Semoga artikel ini bermanfaat!
-

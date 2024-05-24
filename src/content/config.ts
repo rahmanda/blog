@@ -7,6 +7,7 @@ const articlesCollection = defineCollection({
     summary: z.string().optional(),
     published_date: z.date(),
     language: z.enum(["id", "en"]).optional(),
+    translations: z.object({ en: z.string(), id: z.string() }).optional(),
   }),
 });
 

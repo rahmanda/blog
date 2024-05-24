@@ -7,12 +7,13 @@ language: id
 type: blog
 category: tools
 translations:
-  en: /blog/en/why-i-use-emacs/
+  id: kok-kamu-pakai-emacs-sih
+  en: why-i-use-emacs
 ---
 
 Keperluan terhadap text editor bagi seorang programmer adalah mutlak. Tanpa text editor, programmer tidak dapat ngoding. Oleh karena itu, banyak sekali text editor yang beredar di dunia ini, dan sepertinya para programmer tidak akan berhenti mencari dan menciptakan text editor yang lebih baik dari yang sudah ada saat ini.
 
-Sementara kebanyakan programmer menggunakan Atom, Sublime Text, Notepad++ atau text editor lain yang lebih modern, saya malah jatuh hati pada [Emacs](https://www.gnu.org/software/emacs/). Emacs pertama kali dibuat pada tahun 1976 oleh [Richard Stallman](https://en.wikipedia.org/wiki/RichardStallman) yang merupakan  founder dari GNU Project. Pada tahun ini mouse belum banyak digunakan sehingga ini membuat hampir semua kontrol dari Emacs menggunakan keyboard. Layaknya sebuah fighting game, untuk dapat menggunakan Emacs kamu harus menghapalkan banyak kombinasi 'jurus'.
+Sementara kebanyakan programmer menggunakan Atom, Sublime Text, Notepad++ atau text editor lain yang lebih modern, saya malah jatuh hati pada [Emacs](https://www.gnu.org/software/emacs/). Emacs pertama kali dibuat pada tahun 1976 oleh [Richard Stallman](https://en.wikipedia.org/wiki/RichardStallman) yang merupakan founder dari GNU Project. Pada tahun ini mouse belum banyak digunakan sehingga ini membuat hampir semua kontrol dari Emacs menggunakan keyboard. Layaknya sebuah fighting game, untuk dapat menggunakan Emacs kamu harus menghapalkan banyak kombinasi 'jurus'.
 
 'Kok malah pakai editor jadul? Memangnya banyak yang pakai? Kenapa gak pakai mouse? Ngetik terus emang gak capek? Kok gak pakai VIM aja?...'
 
@@ -45,4 +46,3 @@ Orang yang menanyakan pertanyaan ini sebenarnya ingin mengajak perang \#just jok
 ---
 
 Setiap text editor pasti ada kelebihan dan kekurangannya. Eksplorasi terhadap text editor dapat membuka wawasan kita, dan Emacs adalah salah satu text editor yang patut untuk dipelajari. Tapi hati-hati jangan sampai pekerjaan kamu terbengkalai karena sibuk otak-atik Emacs.
-
