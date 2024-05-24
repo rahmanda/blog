@@ -7,9 +7,10 @@ interface SlugLocale {
 interface Props {
   locale: "en" | "id";
   slug?: string | SlugLocale;
+  isRootSite?: boolean;
 }
 
-const { locale, slug } = Astro.props;
+const { locale, slug, isRootSite = false } = Astro.props;
 
 const navs = [
   {
@@ -26,6 +27,7 @@ const navs = [
   },
 ];
 
+const webtitle = "Rahmanda Wibowo.";
 const blogHomepageLink = `/${locale}/blog`;
 const homepageLink = `/${locale === "id" ? "id" : ""}`;
 
@@ -70,7 +72,7 @@ const translateLinks = {
           <li>
             <a
               class:list={[locale === "en" && "underline"]}
-              href={`/en/${translateLinks.en}`}
+              href={isRootSite ? "/" : `/en/${translateLinks.en}`}
             >
               English
             </a>
@@ -82,55 +84,103 @@ const translateLinks = {
 }
 
 <header class="border-b-2 border-gray-300 sticky top-0 bg-gray-100">
-  <nav class="max-w-screen-lg mx-auto p-4 flex items-center">
-    <div class="flex-1">
-      <a
-        href={blogHomepageLink}
-        class="text-md sm:text-lg font-sans-title tracking-tighter"
-        >Blog <span class="font-light text-sm sm:text-md"
-          >by Rahmanda Wibowo.</span
-        ></a
-      >
-    </div>
-    <ul class="flex-none flex gap-6 text-sm sm:text-md">
-      {
-        navs.map((nav) => (
-          <li>
-            {nav.primary ? (
-              <a
-                class="px-2 py-1 rounded bg-gray-900 text-white font-sans-title"
-                href={nav.link}
-              >
-                {nav.name}
-              </a>
-            ) : (
-              <a class="hidden sm:flex gap-1 hover:underline" href={nav.link}>
-                {nav.name}
-                {nav.external && (
-                  <svg
-                    class="w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-arrow-up-right"
-                  >
-                    <line x1="7" y1="17" x2="17" y2="7" />
-                    <polyline points="7 7 17 7 17 17" />
-                  </svg>
-                )}
-              </a>
-            )}
+  {
+    isRootSite ? (
+      <nav class="max-w-screen-lg mx-auto p-4 flex items-center">
+        <div class="flex-1">
+          <span class="font-sans-title text-md sm:text-lg tracking-tighter">
+            {webtitle}
+          </span>
+        </div>
+        <ul class="flex-none flex gap-6 text-sm sm:text-md">
+          {navs.map((nav) => (
+            <li>
+              {nav.primary ? (
+                <a
+                  class="px-2 py-1 rounded bg-gray-900 text-white font-sans-title"
+                  href={nav.link}
+                >
+                  {nav.name}
+                </a>
+              ) : (
+                <a class="hidden sm:flex gap-1 hover:underline" href={nav.link}>
+                  {nav.name}
+                  {nav.external && (
+                    <svg
+                      class="w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-arrow-up-right"
+                    >
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                  )}
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </nav>
+    ) : (
+      <nav class="max-w-screen-lg mx-auto p-4 flex items-center">
+        <div class="flex-1">
+          <a
+            href={blogHomepageLink}
+            class="text-md sm:text-lg font-sans-title tracking-tighter"
+          >
+            Blog{" "}
+            <span class="font-light text-sm sm:text-md">
+              by Rahmanda Wibowo.
+            </span>
+          </a>
+        </div>
+        <ul class="flex-none flex gap-6 text-sm sm:text-md">
+          {navs.map((nav) => (
+            <li>
+              {nav.primary ? (
+                <a
+                  class="px-2 py-1 rounded bg-gray-900 text-white font-sans-title"
+                  href={nav.link}
+                >
+                  {nav.name}
+                </a>
+              ) : (
+                <a class="hidden sm:flex gap-1 hover:underline" href={nav.link}>
+                  {nav.name}
+                  {nav.external && (
+                    <svg
+                      class="w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-arrow-up-right"
+                    >
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                  )}
+                </a>
+              )}
+            </li>
+          ))}
+          <li class="hidden sm:flex text-gray-500">|</li>
+          <li class="hidden sm:flex">
+            <a class="hover:underline" href={homepageLink}>
+              rahmandawibowo.com
+            </a>
           </li>
-        ))
-      }
-      <li class="hidden sm:flex text-gray-500">|</li>
-      <li class="hidden sm:flex">
-        <a class="hover:underline" href={homepageLink}>rahmandawibowo.com</a>
-      </li>
-    </ul>
-  </nav>
+        </ul>
+      </nav>
+    )
+  }
 </header>
