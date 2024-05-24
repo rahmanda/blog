@@ -1,0 +1,61 @@
+---
+import BaseLayout from "src/layouts/Base.astro";
+import Navbar from "./Navbar.astro";
+import Footer from "./Footer.astro";
+import { t, SOCIAL_MEDIA } from "src/config";
+
+interface Props {
+  summary: string;
+  locale: "en" | "id";
+}
+
+const { summary, locale } = Astro.props;
+const title = t[locale].lets_connect;
+---
+
+<BaseLayout frontmatter={{ title, summary, locale }}>
+  <Navbar locale={locale} slug="contact" isRootSite />
+
+  <main class="mt-12 sm:mt-20 max-w-screen-lg mx-auto px-4 mb-6 sm:mb-10">
+    <article>
+      <h1
+        class="font-sans-title text-4xl sm:text-6xl mb-5 sm:mb-8 text-balance"
+      >
+        {title}
+      </h1>
+      <slot />
+      <ul class="flex items-center gap-3 sm:gap-5 mt-4 sm:mt-6 flex-wrap">
+        <li>
+          <a
+            class="px-4 py-3 border-2 border-gray-300 rounded-lg inline-flex text-lg sm:text-xl font-sans-title"
+            href={SOCIAL_MEDIA.email}>Email</a
+          >
+        </li>
+        <li>
+          <a
+            class="px-4 py-3 border-2 border-gray-300 rounded-lg inline-flex text-lg sm:text-xl font-sans-title"
+            href={SOCIAL_MEDIA.linkedin}>Linkedin</a
+          >
+        </li>
+        <li>
+          <a
+            class="px-4 py-3 border-2 border-gray-300 rounded-lg inline-flex text-lg sm:text-xl font-sans-title"
+            href={SOCIAL_MEDIA.github}>Github</a
+          >
+        </li>
+        <li>
+          <a
+            class="px-4 py-3 border-2 border-gray-300 rounded-lg inline-flex text-lg sm:text-xl font-sans-title"
+            href={SOCIAL_MEDIA.x}>X (Twitter)</a
+          >
+        </li>
+      </ul>
+    </article>
+  </main>
+
+  <footer>
+    <div class="max-w-screen-lg mx-auto py-8 px-4 text-sm">
+      <p class="mb-2">© 2015-present Rahmanda Wibowo. All rights reserved.</p>
+    </div>
+  </footer>
+</BaseLayout>
