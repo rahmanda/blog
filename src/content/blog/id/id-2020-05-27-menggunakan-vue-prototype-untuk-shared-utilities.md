@@ -7,7 +7,8 @@ language: id
 type: blog
 category: vue
 translations:
-  en: /blog/en/using-vue-prototype-for-shared-utilities/
+  id: menggunakan-vue-prototype-untuk-shared-utilities
+  en: using-vue-prototype-for-shared-utilities
 ---
 
 Ada beberapa cara untuk membuat fungsi utility dalam suatu aplikasi Vue. Namun saya pikir cara yang paling baik adalah memanfaatkan prototype Vue. Pada artikel ini, saya akan memberikan beberapa kelebihan dan kekurangan dari beberapa pendekatan dan menjelaskan mengapa saya memilih menggunakan prototype untuk kasus ini.
@@ -16,31 +17,32 @@ Ada beberapa cara untuk membuat fungsi utility dalam suatu aplikasi Vue. Namun s
 
 Membuat sebuah modul JS merupakan cara yang paling mudah untuk membuat fungsi utility. Sederhananya, tulis sebuah fungsi dalam suatu file JS, lalu impor dia ke dalam file JS yang mau menggunakannya. Berikut adalah contoh bagaimana kita dapat menggunakan modul JS dalam sebuah komponen.
 
-``` js
+```js
 // asset-utility.js
 
 export function imageUrl(path) {
   return `https://cdn.com/${path}`;
 }
 ```
-``` html
+
+```html
 <template>
   <div>
-    <img :src="logoUrl">
+    <img :src="logoUrl" />
   </div>
 </template>
 
 <script>
-// lalu dalam komponen kamu
-import { imageUrl } from './asset-utility';
+  // lalu dalam komponen kamu
+  import { imageUrl } from "./asset-utility";
 
-export default {
-  data() {
-    return {
-      logoUrl: imageUrl('/your-logo.png'),
-    };
-  },
-};
+  export default {
+    data() {
+      return {
+        logoUrl: imageUrl("/your-logo.png"),
+      };
+    },
+  };
 </script>
 ```
 
@@ -48,24 +50,24 @@ Contoh di atas menunjukkan bahwa fungsi kita hanya dapat digunakan sekali dengan
 
 Untuk membuatnya lebih simpel, bagaimana kalau kita memanggil fungsi tersebut langsung di dalam template komponen saja? Dengan begini, kita tidak perlu membuat `data` atau `computed` berkali-kali untuk setiap path atau parameter. Untuk itu, saya perlu membuat fungsi tersebut supaya bisa diakses dalam konteks objek komponen kita.
 
-``` html
+```html
 <template>
   <!-- koleksi gambar -->
   <div>
-    <img :src="imageUrl('/poster-image-1.jpg')">
-    <img :src="imageUrl('/poster-image-2.jpg')">
-    <img :src="imageUrl('/poster-image-3.jpg')">
+    <img :src="imageUrl('/poster-image-1.jpg')" />
+    <img :src="imageUrl('/poster-image-2.jpg')" />
+    <img :src="imageUrl('/poster-image-3.jpg')" />
   </div>
 </template>
 
 <script>
-import { imageUrl } from './asset-utility';
+  import { imageUrl } from "./asset-utility";
 
-export default {
-  methods: {
-    imageUrl,
-  },
-};
+  export default {
+    methods: {
+      imageUrl,
+    },
+  };
 </script>
 ```
 
@@ -75,7 +77,7 @@ Nah, sekarang komponen kita sudah lebih baik, tapi pendekatan ini bakal cepat us
 
 Karena kita perlu membuat fungsi tersebut dapat diakses dalam konteks objek komponen kita, kenapa tidak pakai mixins saja sekalian?
 
-``` js
+```js
 // Ubah kode utility menjadi mixin
 // mixins/asset-utility.js
 export default {
@@ -87,22 +89,22 @@ export default {
 };
 ```
 
-``` html
+```html
 <template>
   <!-- koleksi gambar -->
   <div>
-    <img :src="imageUrl('/poster-image-1.jpg')">
-    <img :src="imageUrl('/poster-image-2.jpg')">
-    <img :src="imageUrl('/poster-image-3.jpg')">
+    <img :src="imageUrl('/poster-image-1.jpg')" />
+    <img :src="imageUrl('/poster-image-2.jpg')" />
+    <img :src="imageUrl('/poster-image-3.jpg')" />
   </div>
 </template>
 
 <script>
-import assetUtility from './mixins/asset-utility';
+  import assetUtility from "./mixins/asset-utility";
 
-export default {
-  mixins: [assetUtility],
-};
+  export default {
+    mixins: [assetUtility],
+  };
 </script>
 ```
 
@@ -120,29 +122,28 @@ Kedua adalah saya memberikan akses yang luas kepada fungsi utility. Meskipun kit
 
 Untuk mencegah hal yang tidak kita inginkan dari sebuah mixin, kita bisa menggunakan prototype untuk membuat fungsi utility. Coba lihat contoh berikut ini.
 
-
-``` js
+```js
 // misal ini adalah file utama aplikasi Vue kita
 // main.js
-import Vue from 'vue';
-import { imageUrl } from './asset-utility';
+import Vue from "vue";
+import { imageUrl } from "./asset-utility";
 
 Vue.prototype.$imageUrl = imageUrl;
 
 const app = new Vue({
- // konfigurasi vue ditulis disini...
+  // konfigurasi vue ditulis disini...
 });
 
-app.$mount('#app');
+app.$mount("#app");
 ```
 
-``` html
+```html
 <template>
   <!-- koleksi gambar -->
   <div>
-    <img :src="$imageUrl('/poster-image-1.jpg')">
-    <img :src="$imageUrl('/poster-image-2.jpg')">
-    <img :src="$imageUrl('/poster-image-3.jpg')">
+    <img :src="$imageUrl('/poster-image-1.jpg')" />
+    <img :src="$imageUrl('/poster-image-2.jpg')" />
+    <img :src="$imageUrl('/poster-image-3.jpg')" />
   </div>
 </template>
 ```
@@ -153,9 +154,9 @@ Apabila kamu memperhatikan dengan jeli, sekarang kita sudah tidak perlu menulis 
 
 Kamu juga bisa menulis sebuah plugin untuk mengurangi inisialisasi prototype dalam file `main.js`.
 
-``` js
+```js
 // plugins/asset.js
-import { imageUrl } from './asset-utility';
+import { imageUrl } from "./asset-utility";
 
 export default {
   install(Vue) {
@@ -164,19 +165,18 @@ export default {
 };
 
 // main.js
-import Vue from 'vue';
-import assetPlugin from './plugins/asset';
+import Vue from "vue";
+import assetPlugin from "./plugins/asset";
 
 Vue.use(assetPlugin);
 
 const app = new Vue({
- // konfigurasi vue ditulis disini...
+  // konfigurasi vue ditulis disini...
 });
 
-app.$mount('#app');
+app.$mount("#app");
 ```
 
 ## Penutup
 
 Sekarang kita sudah mengulas beberapa cara untuk membuat shared utilities. Menurut pengalaman saya, cara yang paling baik untuk membuat shared utilities adalah dengan memanfaatkan prototype. Dengan menggunakan prototype, kita dapat mengurangi duplikasi sekaligus memberikan limitasi akses terhadap konteks sebuah komponen.
-

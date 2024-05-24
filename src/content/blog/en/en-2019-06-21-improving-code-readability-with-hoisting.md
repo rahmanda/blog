@@ -7,14 +7,15 @@ language: en
 type: blog
 category: javascript
 translations:
-  id: /blog/id/peran-hoisting-dalam-meningkatkan-keterbacaan-kode/
+  id: peran-hoisting-dalam-meningkatkan-keterbacaan-kode
+  en: improving-code-readability-with-hoisting
 ---
 
 Many people don't like hoisting because of its confusing nature. Moreover, super popular style guide like [airbnb/javascript](https://github.com/airbnb/javascript#functions) recommends not to use hoisting at all. Why does it happen though?
 
 To know the reason behind it, let's take a look at an example below.
 
-``` js
+```js
 add(1, 3);
 
 function add(a, b) {
@@ -28,26 +29,26 @@ The return value is `4` even though the `add` function is declared after its fun
 
 This kind of behaviour is uncommon in other programming languages. Normally, we expect an error every time there is a call before the function declaration. Many programmers, especially people who have experience in other programming language, find hoisting confusing and decide to always declare functions early in the program. Some of them [even take it further](https://github.com/airbnb/javascript#functions--declarations) to use this kind of coding style to make sure that they won't encounter hoisting behaviour.
 
-``` js
+```js
 add(1, 3); // ReferenceError: can't access lexical declaration `add' before initialization
 
 const add = function addFn(a, b) {
   return a + b;
-}
+};
 ```
 
 In my opinion, above example just complicates things even more because it is now longer and we have to name our function twice. When thinking about improving readability, this pattern just adds another confusion because it is uncommon to code like this in other programming languages as well.
 
 ## Readability on anti-hoisting vs hoisting-first code
 
-Below example is a simple code which doesn't make use of *hoisting* (even though the *hoisting* behaviour is still there).
+Below example is a simple code which doesn't make use of _hoisting_ (even though the _hoisting_ behaviour is still there).
 
-``` js
+```js
 // anti-hoisting.js
 
-import path from 'path';
-import fs from 'fs';
-import glob from 'glob';
+import path from "path";
+import fs from "fs";
+import glob from "glob";
 
 function getFilename(filePath) {
   return path.basename(filePath, path.extname(filePath));
@@ -57,12 +58,12 @@ function readFile(filePath) {
   return {
     path: filePath,
     filename: getFilename(filePath),
-    content: fs.readFileSync(filePath, 'utf-8'),
+    content: fs.readFileSync(filePath, "utf-8"),
   };
 }
 
 function getAllFiles() {
-  const globPattern = path.join(__dirname, 'src/*.md');
+  const globPattern = path.join(__dirname, "src/*.md");
   const filePaths = glob.sync(globPattern);
   const files = filePaths.map(readFile);
   return files;
@@ -87,19 +88,19 @@ Therefore, to follow the entire process of the code, we need to read in reverse 
 
 One of the initial reasons to write all of the declarations on the very top was to know all of the available functions. However in reality, every time there is a function call, we still need to move again to where it is being declared in order to know how the function works.
 
-Now, compare it with this example which make use of hoisting (or I like to call it *hoisting-first* method).
+Now, compare it with this example which make use of hoisting (or I like to call it _hoisting-first_ method).
 
-``` js
+```js
 // hoisting-first.js
 
-import path from 'path';
-import fs from 'fs';
-import glob from 'glob';
+import path from "path";
+import fs from "fs";
+import glob from "glob";
 
 export default getAllFiles;
 
 function getAllFiles() {
-  const globPattern = path.join(__dirname, 'src/*.md');
+  const globPattern = path.join(__dirname, "src/*.md");
   const filePaths = glob.sync(globPattern);
   const files = filePaths.map(readFile);
   return files;
@@ -109,7 +110,7 @@ function readFile(filePath) {
   return {
     path: filePath,
     filename: getFilename(filePath),
-    content: fs.readFileSync(filePath, 'utf-8'),
+    content: fs.readFileSync(filePath, "utf-8"),
   };
 }
 
@@ -124,9 +125,9 @@ The code which is written in hoisting-first method is also easier to read on a m
 
 ## The downsides of hoisting-first
 
-If you want to code in hoisting-first way and you are fond of using eslint on your text-editor, you may want to reconfigure your eslint settings. This is because some of the eslint preset, especially [airbnb config](https://www.npmjs.com/package/eslint-config-airbnb), set up a bunch of *anti-hoisting* rules. Therefore, these kind of rules need to be turned off so that there is no error when coding or doing a git commit.
+If you want to code in hoisting-first way and you are fond of using eslint on your text-editor, you may want to reconfigure your eslint settings. This is because some of the eslint preset, especially [airbnb config](https://www.npmjs.com/package/eslint-config-airbnb), set up a bunch of _anti-hoisting_ rules. Therefore, these kind of rules need to be turned off so that there is no error when coding or doing a git commit.
 
-However after the *anti-hoisting* rules have been turned off, it becomes more free to declare functions. Therefore, we need to restrain ourselves to not turn our code into a mess.
+However after the _anti-hoisting_ rules have been turned off, it becomes more free to declare functions. Therefore, we need to restrain ourselves to not turn our code into a mess.
 
 ## Closing words
 
@@ -143,4 +144,3 @@ Because I was very curious about why hoisting was added on Javascript, I looked 
 Based on his tweet, I can say that my hoisting-first method has been well aligned with the real purpose of the hoisting itself from the very beginning.
 
 What do you think?
-

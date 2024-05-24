@@ -7,7 +7,8 @@ language: en
 type: blog
 category: javascript
 translations:
-  id: /blog/id/bagaimana-cara-mengelola-struktur-folder-di-projek-js-dengan-efektif
+  id: bagaimana-cara-mengelola-struktur-folder-di-projek-js-dengan-efektif
+  en: how-to-manage-your-folder-structure-in-js-project-effectively
 ---
 
 > It's a hard topic, I know. But I think it is still worth to discuss

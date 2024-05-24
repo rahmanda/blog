@@ -7,7 +7,8 @@ language: en
 type: blog
 category: vue
 translations:
-  id: /blog/id/membuat-komponen-untuk-mengecek-viewport-di-vue
+  id: membuat-komponen-untuk-mengecek-viewport-di-vue
+  en: building-component-to-check-viewport-in-vue
 ---
 
 Sometimes we need to check viewport via JS to complement CSS media queries for building a responsive web design. In this article, I will explain how to implement it as a component to gain the benefit of reusability and declarative usage in a template.
@@ -16,7 +17,7 @@ Sometimes we need to check viewport via JS to complement CSS media queries for b
 
 Let's say that we want to use the viewport value from a slot scope. Below is the rough idea of how we would use it on template.
 
-``` html
+```html
 <template>
   <Viewport>
     <template v-slot:default="{ value }">
@@ -37,81 +38,80 @@ In this component, we only use the default slot to provide the viewport value. T
 
 We will create a state to hold the viewport value and return it as a slot prop. The code will look something like this:
 
-``` html
+```html
 <script>
-export default {
-  data() {
-    return {
-      value: 0
-    }
-  },
-  render() {
-    // return the state as slot props
-    return this.$scopedSlots.default({
-      value: this.value
-    })
-  }
-}
+  export default {
+    data() {
+      return {
+        value: 0,
+      };
+    },
+    render() {
+      // return the state as slot props
+      return this.$scopedSlots.default({
+        value: this.value,
+      });
+    },
+  };
 </script>
 ```
 
 Now we need to set the initial value of the state on mounted lifecycle.
 
-``` html
+```html
 <script>
-export default {
-  data() {
-    return {
-      value: 0
-    }
-  },
-  // set the initial value
-  mounted() {
-    this.value = window.innerWidth
-  },
-  // ...
-}
+  export default {
+    data() {
+      return {
+        value: 0,
+      };
+    },
+    // set the initial value
+    mounted() {
+      this.value = window.innerWidth;
+    },
+    // ...
+  };
 </script>
 ```
 
 Because we want the `value` state to change every time a user resize the screen, we need to set up an event listener like below.
 
-``` html
+```html
 <script>
-export default {
-  data() {
-    return {
-      value: 0
-    }
-  },
-  mounted() {
-    // we create a methods for this part so that
-    // we can reuse it inside of the listener
-    this.setValue()
-    this.setListener()
-  },
-  methods: {
-    setValue() {
-      this.value = window.innerWidth
+  export default {
+    data() {
+      return {
+        value: 0,
+      };
     },
-    setListener() {
-      let timeout
-      // because resizing event can be quite an intensive process
-      // we use requestAnimationFrame so that it won't block the browser's rendering cycle
-      window.addEventListener('resize', () => {
-        if (timeout) {
-          window.cancelAnimationFrame(timeout)
-        }
-        timeout = window.requestAnimationFrame(() => {
-          this.setValue()
-        })
-      })
-    }
-  }
-  // ...
-}
+    mounted() {
+      // we create a methods for this part so that
+      // we can reuse it inside of the listener
+      this.setValue();
+      this.setListener();
+    },
+    methods: {
+      setValue() {
+        this.value = window.innerWidth;
+      },
+      setListener() {
+        let timeout;
+        // because resizing event can be quite an intensive process
+        // we use requestAnimationFrame so that it won't block the browser's rendering cycle
+        window.addEventListener("resize", () => {
+          if (timeout) {
+            window.cancelAnimationFrame(timeout);
+          }
+          timeout = window.requestAnimationFrame(() => {
+            this.setValue();
+          });
+        });
+      },
+    },
+    // ...
+  };
 </script>
-
 ```
 
 And that's it!
@@ -120,7 +120,7 @@ And that's it!
 
 Instead of manually checking the viewport value from the component, we can also add a breakpoint functionality in the component so that we don't have to add magic numbers or import the breakpoint config from our CSS framework to the template. Thus, the usage will look like this:
 
-``` html
+```html
 <template>
   <Viewport>
     <template v-slot:default="{ breakpoint }">
@@ -137,118 +137,117 @@ Instead of manually checking the viewport value from the component, we can also 
 
 To add the breakpoint functionality, we need to introduce a new state called `breakpoint`, and the state will change according to the `value` state. We will make use of watcher to track the `value` state and trigger a method to change the breakpoint.
 
-``` html
+```html
 <script>
-export default {
-  data() {
-    return {
-      value: 0,
-      // add a new state
-      breakpoint: ''
-    }
-  },
-  // add watcher for value
-  watch: {
-    value: {
-      // need to set immediate as true to trigger the handler
-      // immediately after the start of the observation
-      immediate: true,
-      handler: 'setBreakpoint'
-    }
-  },
-  // ...
-  methods: {
+  export default {
+    data() {
+      return {
+        value: 0,
+        // add a new state
+        breakpoint: "",
+      };
+    },
+    // add watcher for value
+    watch: {
+      value: {
+        // need to set immediate as true to trigger the handler
+        // immediately after the start of the observation
+        immediate: true,
+        handler: "setBreakpoint",
+      },
+    },
     // ...
-    // I use small-to-large screen approach here
-    // but you can change the logic however you like it
-    setBreakpoint(value) {
-      let breakpoint = 'xs'
+    methods: {
+      // ...
+      // I use small-to-large screen approach here
+      // but you can change the logic however you like it
+      setBreakpoint(value) {
+        let breakpoint = "xs";
 
-      if (value >= 576) {
-        breakpoint = 'sm'
-      } else if (value >= 756) {
-        breakpoint = 'md'
-      } else if (value >= 1024) {
-        breakpoint = 'lg'
-      } else if (value >= 1280) {
-        breakpoint = 'xl'
-      }
+        if (value >= 576) {
+          breakpoint = "sm";
+        } else if (value >= 756) {
+          breakpoint = "md";
+        } else if (value >= 1024) {
+          breakpoint = "lg";
+        } else if (value >= 1280) {
+          breakpoint = "xl";
+        }
 
-      this.breakpoint = breakpoint
-    }
-  },
-  render() {
-    return this.$scopedSlots.default({
-      value: this.value,
-      // return the breakpoint state as slot props
-      breakpoint: this.breakpoint
-    })
-  }
-}
+        this.breakpoint = breakpoint;
+      },
+    },
+    render() {
+      return this.$scopedSlots.default({
+        value: this.value,
+        // return the breakpoint state as slot props
+        breakpoint: this.breakpoint,
+      });
+    },
+  };
 </script>
 ```
 
 Finally, the complete code will look like this.
 
-``` html
+```html
 <script>
-export default {
-  data() {
-    return {
-      value: 0,
-      breakpoint: ''
-    }
-  },
-  watch: {
-    value: {
-      immediate: true,
-      handler: 'setBreakpoint'
-    }
-  },
-  mounted() {
-    this.setValue()
-    this.setListener()
-  },
-  methods: {
-    setValue() {
-      this.value = window.innerWidth
+  export default {
+    data() {
+      return {
+        value: 0,
+        breakpoint: "",
+      };
     },
-    setListener() {
-      let timeout
-      window.addEventListener('resize', () => {
-        if (timeout) {
-          window.cancelAnimationFrame(timeout)
+    watch: {
+      value: {
+        immediate: true,
+        handler: "setBreakpoint",
+      },
+    },
+    mounted() {
+      this.setValue();
+      this.setListener();
+    },
+    methods: {
+      setValue() {
+        this.value = window.innerWidth;
+      },
+      setListener() {
+        let timeout;
+        window.addEventListener("resize", () => {
+          if (timeout) {
+            window.cancelAnimationFrame(timeout);
+          }
+          timeout = window.requestAnimationFrame(() => {
+            this.setValue();
+          });
+        });
+      },
+      setBreakpoint(value) {
+        let breakpoint = "xs";
+
+        if (value >= 576) {
+          breakpoint = "sm";
+        } else if (value >= 756) {
+          breakpoint = "md";
+        } else if (value >= 1024) {
+          breakpoint = "lg";
+        } else if (value >= 1280) {
+          breakpoint = "xl";
         }
-        timeout = window.requestAnimationFrame(() => {
-          this.setValue()
-        })
-      })
+
+        this.breakpoint = breakpoint;
+      },
     },
-    setBreakpoint(value) {
-      let breakpoint = 'xs'
-
-      if (value >= 576) {
-        breakpoint = 'sm'
-      } else if (value >= 756) {
-        breakpoint = 'md'
-      } else if (value >= 1024) {
-        breakpoint = 'lg'
-      } else if (value >= 1280) {
-        breakpoint = 'xl'
-      }
-
-      this.breakpoint = breakpoint
-    }
-  },
-  render() {
-    return this.$scopedSlots.default({
-      value: this.value,
-      breakpoint: this.breakpoint
-    })
-  }
-}
+    render() {
+      return this.$scopedSlots.default({
+        value: this.value,
+        breakpoint: this.breakpoint,
+      });
+    },
+  };
 </script>
 ```
 
 And that's pretty much it!
-

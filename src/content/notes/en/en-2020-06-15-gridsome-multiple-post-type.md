@@ -5,31 +5,32 @@ published_date: 2020-06-15
 language: en
 type: til
 translations:
-  id: /til/id/#menggunakan-gridsome-dengan-beberapa-tipe-post
+  id: menggunakan-gridsome-dengan-beberapa-tipe-post
+  en: using-gridsome-with-multiple-post-type
 ---
 
 Until v0.7.17, the only way to enable multiple post type is by repeatedly registering bunch of `@gridsome/source-filesystem` configs on `gridsome.config.js` plugins value.
 
-``` js
+```js
 // gridsome.config.js
 
 export default {
   // ...
   plugins: [
     {
-      use: '@gridsome/source-filesystem',
+      use: "@gridsome/source-filesystem",
       options: {
-        typeName: 'Blog',
-        path: './contents/blog/**/*.md'
-      }
+        typeName: "Blog",
+        path: "./contents/blog/**/*.md",
+      },
     },
     {
-      use: '@gridsome/source-filesystem',
+      use: "@gridsome/source-filesystem",
       options: {
-        typeName: 'Journal',
-        path: './contents/journal/**/*.md'
-      }
-    }
-  ]
-}
+        typeName: "Journal",
+        path: "./contents/journal/**/*.md",
+      },
+    },
+  ],
+};
 ```
