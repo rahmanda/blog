@@ -13,6 +13,7 @@
   "dependencies": {
     "@astrojs/check": "^0.5.6",
     "@astrojs/mdx": "^2.1.1",
+    "@astrojs/sitemap": "^3.1.5",
     "@astrojs/tailwind": "^5.1.0",
     "@tailwindcss/typography": "^0.5.10",
     "@types/codemirror": "^5.60.15",

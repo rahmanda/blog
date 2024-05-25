@@ -10,6 +10,7 @@ const { title, description } = Astro.props;
 ---
 
 <meta charset="utf-8" />
+<link rel="sitemap" href="/sitemap-index.xml" />
 <link
   rel="apple-touch-icon"
   sizes="180x180"
@@ -41,8 +42,10 @@ const { title, description } = Astro.props;
   href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
   rel="stylesheet"
 />
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PDPKZGVQ0G"
-></script>
+<script
+  is:inline
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-PDPKZGVQ0G"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag() {

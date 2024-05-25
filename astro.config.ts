@@ -1,5 +1,6 @@
 import { defineConfig, passthroughImageService } from "astro/config";
 import tailwind from "@astrojs/tailwind";
+import sitemap from "@astrojs/sitemap";
 import { RemarkLinkRewrite } from "./src/plugins/link-rewrite";
 import { RemarkReadingTime } from "./src/plugins/reading-time";
 
@@ -47,5 +48,5 @@ export default defineConfig({
       RemarkReadingTime,
     ],
   },
-  integrations: [tailwind(), mdx()],
+  integrations: [tailwind(), mdx(), sitemap()],
 });

@@ -58,11 +58,11 @@ const translateLinks = {
 {
   slug === undefined ? null : (
     <aside class="bg-gray-200">
-      <div class="max-w-screen-lg mx-auto px-4 py-3 text-right">
-        <ul class="inline-flex items-center gap-3 text-sm text-gray-600">
+      <div class="max-w-screen-lg mx-auto px-4 py-2 text-right">
+        <ul class="inline-flex items-center gap-3 text-sm text-gray-600 leading-none">
           <li>
             <svg
-              class="w-5 h-5 self-end"
+              class="w-5 h-5"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -79,7 +79,7 @@ const translateLinks = {
               />
             </svg>
           </li>
-          <li>
+          <li class="mt-[0.2rem]">
             <a
               class:list={[locale === "id" && "underline"]}
               href={
@@ -89,7 +89,7 @@ const translateLinks = {
               Bahasa Indonesia
             </a>
           </li>
-          <li>
+          <li class="mt-[0.2rem]">
             <a
               class:list={[locale === "en" && "underline"]}
               href={translateLinks.en === "" ? "/" : `/en/${translateLinks.en}`}

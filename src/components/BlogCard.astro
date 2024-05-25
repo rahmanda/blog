@@ -12,7 +12,7 @@ const { entry, locale } = Astro.props;
 const articleLink = `/${locale}/blog/${entry.slug}/`;
 ---
 
-<article class="border-2 border-gray-300 rounded-lg p-6 h-full">
+<article class="border-2 border-gray-300 rounded-lg p-4 sm:p-6 h-full">
   <a href={articleLink} class="group">
     <aside class="mb-2">
       <time
