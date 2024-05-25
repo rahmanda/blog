@@ -1,0 +1,44 @@
+---
+
+---
+
+<style is:global>
+  .side-navbar {
+    top: 3.35rem;
+    left: 0;
+    height: calc(100dvh - 3.35rem);
+  }
+
+  .side-navbar-show {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    display: block;
+    width: 75%;
+    padding-right: 3rem;
+    height: 100dvh;
+  }
+
+  .side-navbar-show::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 0;
+    width: 25%;
+    height: 100dvh;
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+
+  .side-navbar__button-close {
+    display: none;
+  }
+
+  .side-navbar-show .side-navbar__button-close {
+    display: block;
+    position: absolute;
+    top: 1.5rem;
+    right: 1rem;
+  }
+</style>

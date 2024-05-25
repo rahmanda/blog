@@ -41,7 +41,7 @@ const navs = [
     link: `/${locale}/contact`,
     primary: true,
     external: false,
-    isRootSiteOnly: false,
+    isRootSiteOnly: true,
   },
 ];
 
@@ -57,7 +57,7 @@ const translateLinks = {
 
 {
   slug === undefined ? null : (
-    <aside class="bg-gray-200">
+    <aside class="bg-gray-200 border-b border-gray-300">
       <div class="max-w-screen-lg mx-auto px-4 py-2 text-right">
         <ul class="inline-flex items-center gap-3 text-sm text-gray-600 leading-none">
           <li>
@@ -148,6 +148,26 @@ const translateLinks = {
               )}
             </li>
           ))}
+          <li class="sm:hidden flex items-center">
+            <button onclick="onButtonMenuClick()">
+              <svg
+                class="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-width="2"
+                  d="M5 7h14M5 12h14M5 17h14"
+                />
+              </svg>
+            </button>
+          </li>
         </ul>
       </nav>
     ) : (
@@ -207,8 +227,90 @@ const translateLinks = {
               rahmandawibowo.com
             </a>
           </li>
+          <li class="sm:hidden flex items-center">
+            <button onclick="onButtonMenuClick()">
+              <svg
+                class="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-width="2"
+                  d="M5 7h14M5 12h14M5 17h14"
+                />
+              </svg>
+            </button>
+          </li>
         </ul>
       </nav>
     )
   }
+  <aside
+    id="side-navbar"
+    class="side-navbar flex-none w-1/4 hidden sticky overflow-y-scroll p-6 bg-gray-100"
+  >
+    <button
+      class="side-navbar__button-close button-close"
+      onclick="onSideNavbarCloseClick()"
+    >
+      <svg
+        class="w-5 h-5"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18 18 6m0 12L6 6"></path>
+      </svg>
+    </button>
+    <nav>
+      <div class="mb-8">
+        <a class="font-sans-title text-lg" href={homepageLink}
+          >Rahmanda Wibowo.</a
+        >
+      </div>
+
+      <ul class="flex flex-col gap-6">
+        {
+          navs.map((nav) => (
+            <li>
+              <a class="text-3xl" href={nav.link}>
+                {nav.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <ul class="inline-flex items-center gap-3 text-sm mt-10">
+        <li>
+          <a
+            class:list={[locale === "id" && "underline"]}
+            href={translateLinks.id === "" ? "/id" : `/id/${translateLinks.id}`}
+          >
+            Bahasa Indonesia
+          </a>
+        </li>
+        <li>
+          <a
+            class:list={[locale === "en" && "underline"]}
+            href={translateLinks.en === "" ? "/" : `/en/${translateLinks.en}`}
+          >
+            English
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
 </header>
